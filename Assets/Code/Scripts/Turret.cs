@@ -50,15 +50,17 @@ public class Turret : MonoBehaviour
         if (!CheckTargetIsInRange())
         {
             target = null;
-        } else {
-            timeUntilFire += Time.deltaTime;
+            return;
+        } 
 
-            if (timeUntilFire >= 1f / bps)
-            {
-                Shoot();
-                timeUntilFire = 0f; // Reset time to zero
-            }
+        timeUntilFire += Time.deltaTime;
+
+        if (timeUntilFire >= 1f / bps)
+        {
+            Shoot();
+            timeUntilFire = 0f; // Reset time to zero
         }
+
     }
 
     private void Shoot()

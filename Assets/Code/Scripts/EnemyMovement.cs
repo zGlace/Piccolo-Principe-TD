@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -13,6 +14,7 @@ public class EnemyMovement : MonoBehaviour
 
     private Transform target;
     private int pathIndex = 0;
+    private float pathTargetRange = 0.1f;
     private float baseSpeed;
 
     private void Start()
@@ -23,21 +25,38 @@ public class EnemyMovement : MonoBehaviour
 
     private void Update()
     {
-        if (Vector2.Distance(target.position, transform.position) <= 0.1f)
-        {
-            pathIndex++;
-
-            if (pathIndex >= LevelManager.main.path.Length)
-            {
-                EnemySpawner.onEnemyDestroy.Invoke();
-                Destroy(gameObject);
-                return;
-            } else {
-                target = LevelManager.main.path[pathIndex];
-            }
-        }
+        UpdatePath();
     }
-    
+
+    private void UpdatePath()
+    {
+
+        if (!isCollidingWithCheckpoint())
+            return;
+
+        pathIndex++;
+
+        if (isPathEnded())
+        {
+            EnemySpawner.onEnemyDestroy.Invoke();
+            Destroy(gameObject);
+            return;
+        }
+
+        target = LevelManager.main.path[pathIndex];
+
+    }
+
+    private bool isCollidingWithCheckpoint()
+    {
+        return Vector2.Distance(target.position, transform.position) <= pathTargetRange;
+    }
+
+    private bool isPathEnded()
+    {
+        return pathIndex >= LevelManager.main.path.Length;
+    }
+
     private void FixedUpdate()
     {
         Vector2 direction = (target.position - transform.position).normalized; //"normalized" makes it so that the direction only goes between 0 and 1
