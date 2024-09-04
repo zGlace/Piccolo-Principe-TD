@@ -34,6 +34,10 @@ Assets/AssetStoreTools*
 # Visual Studio Code
 .vscode/
 
+# Visual Studio
+.vs/
+.vsconfig
+
 # Unity3D generated meta files
 *.pidb
 *.pidb.meta

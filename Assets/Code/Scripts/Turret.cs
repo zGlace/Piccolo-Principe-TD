@@ -60,6 +60,7 @@ public class Turret : MonoBehaviour
             Shoot();
             timeUntilFire = 0f; // Reset time to zero
         }
+
     }
 
     private void Shoot()

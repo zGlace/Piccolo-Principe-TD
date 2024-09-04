@@ -59,7 +59,7 @@ public class EnemyMovement : MonoBehaviour
 
     private void FixedUpdate()
     {
-        Vector2 direction = (target.position - transform.position).normalized; //"normalized" makes it so that the direction only goes between 0 and 1
+        Vector2 direction = (target.position - transform.position).normalized; // "normalized" makes it so that the direction only goes between 0 and 1
 
         rb.velocity = direction * moveSpeed;
     }

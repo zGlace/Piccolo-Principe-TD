@@ -7,7 +7,7 @@ using UnityEngine.EventSystems;
 public class EnemySpawner : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private GameObject[] enemyPrefabs; //array because we will have multiple enemies
+    [SerializeField] private GameObject[] enemyPrefabs; // Array because we will have multiple enemies
 
     [Header("Attributes")]
     [SerializeField] private int baseEnemies = 8;
