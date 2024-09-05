@@ -16,6 +16,7 @@ public class EnemyMovement : MonoBehaviour
     private int pathIndex = 0;
     private float pathTargetRange = 0.1f;
     private float baseSpeed;
+    public Player player;
 
     private void Start()
     {
@@ -38,7 +39,7 @@ public class EnemyMovement : MonoBehaviour
 
         if (isPathEnded())
         {
-            EnemySpawner.onEnemyDestroy.Invoke();
+            EnemySpawner.onEnemyReachedEnd.Invoke();
             Destroy(gameObject);
             return;
         }
@@ -55,6 +56,22 @@ public class EnemyMovement : MonoBehaviour
     private bool isPathEnded()
     {
         return pathIndex >= LevelManager.main.path.Length;
+    }
+
+    private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
+    {
+        if (collision.CompareTag("Player"))
+        {
+            if (player != null)
+            {
+                Debug.Log("Player collided with enemy");
+                player.TakeDamage(1);
+            }
+            else
+            {
+                Debug.LogError("Player reference is null!");
+            }
+        }
     }
 
     private void FixedUpdate()

@@ -163,7 +163,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 7697959986483409342}
-  moveSpeed: 1
+  moveSpeed: 1.5
+  player: {fileID: 7064109826090931087, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
 --- !u!114 &4210684763514627570
 MonoBehaviour:
   m_ObjectHideFlags: 0

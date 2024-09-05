@@ -10,35 +10,43 @@ public class Player : MonoBehaviour
 
 	public HealthBar healthBar;
 
-    void Start()
+    public void Start()
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
 
-        EnemySpawner.onEnemyDestroy.AddListener(OnEnemyReachedEnd);
+        Debug.Log("Adding listener to onEnemyDestroy");
+        EnemySpawner.onEnemyReachedEnd.AddListener(OnEnemyReachedEnd);
     }
 
-    void OnDestroy()
+    public void OnDestroy()
     {
-        EnemySpawner.onEnemyDestroy.RemoveListener(OnEnemyReachedEnd);
+        EnemySpawner.onEnemyReachedEnd.RemoveListener(OnEnemyReachedEnd);
     }
 
-    void OnEnemyReachedEnd()
+    public void OnEnemyReachedEnd()
     {
+        Debug.Log("Enemy reached end, player takes damage");
         TakeDamage(1);
     }
 
-    void TakeDamage(int damage)
+    public void TakeDamage(int damage)
     {
         currentHealth -= damage;
         currentHealth = Mathf.Max(currentHealth, 0); // Makes it so that the health never reaches negative numbers
 
+        Debug.Log($"Player takes {damage} damage. Current health: {currentHealth}");
         healthBar.SetHealth(currentHealth);
 
         if (currentHealth == 0)
         {
-            // To do: Game Over
             Debug.Log("Game Over!");
+            QuitGame();
         }
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
