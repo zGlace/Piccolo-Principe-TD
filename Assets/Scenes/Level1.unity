@@ -4337,11 +4337,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4757146652944792194, guid: cb9abc40f65c6d047b1cc36172383e79, type: 3}
   m_PrefabInstance: {fileID: 779486920}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &788747628 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8315081862928520190, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
-  m_PrefabInstance: {fileID: 7097498031880710830}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &789097190
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6172,13 +6167,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   towers:
   - name: Basic Tower
-    cost: 100
+    cost: 200
     prefab: {fileID: 4282396979821132323, guid: a16b533440dec1a4c86fb27314105fd2, type: 3}
   - name: Long Tower
-    cost: 200
+    cost: 500
     prefab: {fileID: 4282396979821132323, guid: e7fca1fc7fcdb534b90fc469b27d5e3f, type: 3}
   - name: Ice Tower
-    cost: 300
+    cost: 800
     prefab: {fileID: 4282396979821132323, guid: 9c6183e7b58833c42840baef3932099f, type: 3}
 --- !u!114 &1056260384
 MonoBehaviour:
@@ -10112,7 +10107,6 @@ Transform:
   - {fileID: 1251773196}
   - {fileID: 460488480}
   - {fileID: 1714552971}
-  - {fileID: 788747628}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1711901194
@@ -13007,11 +13001,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4918531738666255078, guid: 14c5a7d8057f1504cbd70a0830ad90de, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 685.23926
+      value: 685
       objectReference: {fileID: 0}
     - target: {fileID: 4918531738666255078, guid: 14c5a7d8057f1504cbd70a0830ad90de, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 477
+      value: 430
       objectReference: {fileID: 0}
     - target: {fileID: 4918531738666255078, guid: 14c5a7d8057f1504cbd70a0830ad90de, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -13036,7 +13030,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1676222729}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 668966217125840597, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
       propertyPath: m_Name
@@ -13064,15 +13058,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8315081862928520190, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8315081862928520190, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8315081862928520190, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 8315081862928520190, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -13099,6 +13093,7 @@ SceneRoots:
   - {fileID: 519420032}
   - {fileID: 619394802}
   - {fileID: 1728077723}
+  - {fileID: 7097498031880710830}
   - {fileID: 1676222729}
   - {fileID: 980863342}
   - {fileID: 2130977129}

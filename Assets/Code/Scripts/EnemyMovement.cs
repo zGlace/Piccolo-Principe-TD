@@ -40,12 +40,12 @@ public class EnemyMovement : MonoBehaviour
         if (isPathEnded())
         {
             EnemySpawner.onEnemyReachedEnd.Invoke();
+            EnemySpawner.onEnemyDestroy.Invoke();
             Destroy(gameObject);
             return;
         }
 
         target = LevelManager.main.path[pathIndex];
-
     }
 
     private bool isCollidingWithCheckpoint()
@@ -56,22 +56,6 @@ public class EnemyMovement : MonoBehaviour
     private bool isPathEnded()
     {
         return pathIndex >= LevelManager.main.path.Length;
-    }
-
-    private void OnTriggerEnter2D(UnityEngine.Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            if (player != null)
-            {
-                Debug.Log("Player collided with enemy");
-                player.TakeDamage(1);
-            }
-            else
-            {
-                Debug.LogError("Player reference is null!");
-            }
-        }
     }
 
     private void FixedUpdate()

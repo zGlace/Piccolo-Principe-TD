@@ -15,7 +15,6 @@ public class Player : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
 
-        Debug.Log("Adding listener to onEnemyDestroy");
         EnemySpawner.onEnemyReachedEnd.AddListener(OnEnemyReachedEnd);
     }
 
@@ -26,7 +25,6 @@ public class Player : MonoBehaviour
 
     public void OnEnemyReachedEnd()
     {
-        Debug.Log("Enemy reached end, player takes damage");
         TakeDamage(1);
     }
 
