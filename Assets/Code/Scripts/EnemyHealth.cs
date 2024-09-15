@@ -22,9 +22,4 @@ public class Health : MonoBehaviour
             Destroy(gameObject);
         }
     }
-
-    void Update()
-    {
-        
-    }
 }

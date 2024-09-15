@@ -4,6 +4,7 @@ using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 using System;
 
 public class Turret : MonoBehaviour
@@ -15,9 +16,11 @@ public class Turret : MonoBehaviour
     [SerializeField] private Transform firingPoint;
     [SerializeField] private GameObject upgradeUI;
     [SerializeField] private Button upgradeButton;
+    [SerializeField] private TextMeshProUGUI upgradeCostUI;
+    
 
     [Header("Attributes")]
-    [SerializeField] private float targetingRange = 5f; // Distance that the player is able to target enemies
+    [SerializeField] public float targetingRange = 5f; // Distance that the player is able to target enemies
     [SerializeField] private float rotationSpeed = 250f;
     [SerializeField] private float bps = 1f; // Bullets per second
     [SerializeField] private int baseUpgradeCost = 100;
@@ -28,6 +31,7 @@ public class Turret : MonoBehaviour
     private Transform target;
     private float timeUntilFire;
     private int level = 1;
+    private const int maxLevel = 3;
 
     private void Start()
     {
@@ -35,6 +39,8 @@ public class Turret : MonoBehaviour
         targetingRangeBase = targetingRange;
 
         upgradeButton.onClick.AddListener(Upgrade);
+
+        UpdateUpgradeCostUI();
     }
 
     private void Update()
@@ -60,7 +66,6 @@ public class Turret : MonoBehaviour
             Shoot();
             timeUntilFire = 0f; // Reset time to zero
         }
-
     }
 
     private void Shoot()
@@ -95,6 +100,7 @@ public class Turret : MonoBehaviour
 
     public void OpenUpgradeUI()
     {
+        UpdateUpgradeCostUI();
         upgradeUI.SetActive(true);
     }
 
@@ -106,7 +112,15 @@ public class Turret : MonoBehaviour
 
     public void Upgrade()
     {
-        if (CalculateCost() > LevelManager.main.currency) return;
+        // Check if turret has reached the max level to prevent further upgrades
+        if (level >= maxLevel) return;
+
+        // Check if the player has enough currency
+        if (CalculateCost() > LevelManager.main.currency)
+        {
+            Debug.Log("Can't afford upgrade");
+            return;
+        }
 
         LevelManager.main.SpendCurrency(CalculateCost());
 
@@ -115,6 +129,7 @@ public class Turret : MonoBehaviour
         bps = CalculateBPS();
         targetingRange = CalculateRange();
 
+        UpdateUpgradeCostUI();
         CloseUpgradeUI();
         Debug.Log("New BPS: " + bps);
         Debug.Log("New Range: " + targetingRange);
@@ -136,10 +151,24 @@ public class Turret : MonoBehaviour
         return targetingRange * Mathf.Pow(level, 0.4f);
     }
 
+    private void UpdateUpgradeCostUI()
+    {
+        if (level >= maxLevel)
+        {
+            upgradeCostUI.text = "MAX"; // Display max level reached message
+            upgradeButton.interactable = false; // Disable the upgrade button
+        }
+        else
+        {
+            int cost = CalculateCost();
+            upgradeCostUI.text = cost.ToString(); // Update the UI with the calculated cost
+            upgradeButton.interactable = true; // Ensure the button is interactable if below max level
+        }
+    }
+
     private void OnDrawGizmosSelected()
     {
-        // Handles.color = Color.cyan;
-        Handles.color = Color.red;
+        Handles.color = Color.cyan;
         Handles.DrawWireDisc(transform.position, transform.forward, targetingRange);
     }
 }

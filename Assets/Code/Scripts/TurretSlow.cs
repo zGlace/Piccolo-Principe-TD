@@ -9,7 +9,7 @@ public class TurretSlow : MonoBehaviour
     [SerializeField] private LayerMask enemyMask;
 
     [Header("Attributes")]
-    [SerializeField] private float targetingRange = 5f;
+    [SerializeField] public float targetingRange = 5f;
     [SerializeField] private float aps = 4f; // Attacks per second
     [SerializeField] private float freezeTime = 1f;
 

@@ -6106,10 +6106,10 @@ MonoBehaviour:
     prefab: {fileID: 4282396979821132323, guid: a16b533440dec1a4c86fb27314105fd2, type: 3}
   - name: Long Tower
     cost: 500
-    prefab: {fileID: 4282396979821132323, guid: e7fca1fc7fcdb534b90fc469b27d5e3f, type: 3}
+    prefab: {fileID: 4282396979821132323, guid: 465d51a98f29a774b8032bf770dbdf71, type: 3}
   - name: Mini Tower
-    cost: 350
-    prefab: {fileID: 4282396979821132323, guid: 71a5fc0bb7295b74593a80902438f17b, type: 3}
+    cost: 650
+    prefab: {fileID: 4282396979821132323, guid: 312f7e7c7032a7d40a190dc3308dc147, type: 3}
   - name: Ice Tower
     cost: 800
     prefab: {fileID: 4282396979821132323, guid: 9c6183e7b58833c42840baef3932099f, type: 3}

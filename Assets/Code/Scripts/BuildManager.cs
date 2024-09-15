@@ -5,7 +5,7 @@ using UnityEngine;
 public class BuildManager : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private Tower[] towers;
+    [SerializeField] private Tower[] towers; // Array of all possible towers
 
     public static BuildManager main;
 
@@ -55,14 +55,25 @@ public class BuildManager : MonoBehaviour
         {
             towerPreview = Instantiate(towers[selectedTower].prefab);
 
-            // Disable the collider for preview so it doesn't interfere with gameplay
+            // Disable any collider for preview so it doesn't interfere with gameplay
             Collider2D col = towerPreview.GetComponent<Collider2D>();
             if (col != null)
             {
                 col.enabled = false;
             }
 
-            towerPreview.GetComponent<Turret>().enabled = false;  // Disable turret shooting behavior during preview
+            // Disable the appropriate shooting or freezing behavior during preview
+            Turret turretComponent = towerPreview.GetComponent<Turret>();
+            TurretSlow turretSlowComponent = towerPreview.GetComponent<TurretSlow>();
+
+            if (turretComponent != null)
+            {
+                turretComponent.enabled = false; // Disable regular turret behavior
+            }
+            else if (turretSlowComponent != null)
+            {
+                turretSlowComponent.enabled = false; // Disable freezing turret behavior
+            }
         }
     }
 

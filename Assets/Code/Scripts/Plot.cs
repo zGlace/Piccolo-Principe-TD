@@ -10,6 +10,7 @@ public class Plot : MonoBehaviour
 
     public GameObject towerObj;
     public Turret turret;
+    public TurretSlow turretSlow;
     private Color startColor;
 
     private void Start()
@@ -33,7 +34,15 @@ public class Plot : MonoBehaviour
 
         if (towerObj != null)
         {
-            turret.OpenUpgradeUI();
+            // Open UI for regular turret or slow turret if they exist
+            if (turret != null)
+            {
+                turret.OpenUpgradeUI();
+            }
+            else if (turretSlow != null)
+            {
+                Debug.Log("Slow turret clicked - implement upgrade UI if needed");
+            }
             return;
         }
 
@@ -49,7 +58,9 @@ public class Plot : MonoBehaviour
         LevelManager.main.SpendCurrency(towerToBuild.cost);
 
         towerObj = Instantiate(towerToBuild.prefab, transform.position, Quaternion.identity);
+        
         turret = towerObj.GetComponent<Turret>();
+        turretSlow = towerObj.GetComponent<TurretSlow>();
 
         // Re-enable the collider and turret shooting behavior once placed
         Collider2D col = towerObj.GetComponent<Collider2D>();
@@ -58,7 +69,14 @@ public class Plot : MonoBehaviour
             col.enabled = true;
         }
 
-        turret.enabled = true;  // Enable shooting behavior after placement
+        if (turret != null)
+        {
+            turret.enabled = true;  // Enable shooting behavior for regular turret
+        }
+        else if (turretSlow != null)
+        {
+            turretSlow.enabled = true;  // Enable freezing behavior for slow turret
+        }
 
         // Clear tower selection after placing
         BuildManager.main.ClearSelectedTower();
