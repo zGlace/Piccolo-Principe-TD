@@ -19,10 +19,9 @@ public class UIManager : MonoBehaviour, IPointerClickHandler
         isHoveringUI = EventSystem.current.IsPointerOverGameObject();
     }
 
-     public void OnPointerClick(PointerEventData eventData)
+    public void OnPointerClick(PointerEventData eventData)
     {
-        Debug.Log("UI clicked!");
-        // Other logic for handling UI clicks
+        return;
     }
 
     public void SetHoveringState(bool state)

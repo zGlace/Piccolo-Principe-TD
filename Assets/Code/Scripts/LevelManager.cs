@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class LevelManager : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] public Transform startPoint;
+    [SerializeField] public Transform[] path;
+    [Header("Attributes")]
+    [SerializeField] private int startingCurrency = 200;
+    [SerializeField] public int currency;
+
     public static LevelManager main;
-    public Transform startPoint;
-    public Transform[] path;
-    public int currency;
     
     private void Awake()
     {
@@ -16,7 +20,7 @@ public class LevelManager : MonoBehaviour
 
     private void Start()
     {
-        currency = 200;
+        currency = startingCurrency;
     }
 
     public void IncreaseCurrency(int amount)
@@ -31,7 +35,6 @@ public class LevelManager : MonoBehaviour
             currency -= amount;
             return true;
         } else {
-            Debug.Log("You do not have enough credits to purchase");
             return false;
         }
     }

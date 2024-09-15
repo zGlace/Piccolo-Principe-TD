@@ -8,7 +8,7 @@ TagManager:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Plots
   - Water
   - UI
   - Enemy
@@ -41,7 +41,13 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
-  - name: Turrets
+  - name: BG
+    uniqueID: 2609406033
+    locked: 0
+  - name: Plots
+    uniqueID: 1244773395
+    locked: 0
+  - name: Turrets and Enemies
     uniqueID: 1452975231
     locked: 0
   - name: UI

@@ -30,7 +30,7 @@ public class Plot : MonoBehaviour
     private void OnMouseDown()
     {
         if (UIManager.main.IsHoveringUI()) return;
-        
+
         if (towerObj != null)
         {
             turret.OpenUpgradeUI();
@@ -38,10 +38,11 @@ public class Plot : MonoBehaviour
         }
 
         Tower towerToBuild = BuildManager.main.GetSelectedTower();
+        if (towerToBuild == null) return; // No tower selected
 
         if (towerToBuild.cost > LevelManager.main.currency)
         {
-            Debug.Log("Cannot afford this tower");
+            Debug.Log("Can't afford this tower");
             return;
         }
 
@@ -49,5 +50,17 @@ public class Plot : MonoBehaviour
 
         towerObj = Instantiate(towerToBuild.prefab, transform.position, Quaternion.identity);
         turret = towerObj.GetComponent<Turret>();
+
+        // Re-enable the collider and turret shooting behavior once placed
+        Collider2D col = towerObj.GetComponent<Collider2D>();
+        if (col != null)
+        {
+            col.enabled = true;
+        }
+
+        turret.enabled = true;  // Enable shooting behavior after placement
+
+        // Clear tower selection after placing
+        BuildManager.main.ClearSelectedTower();
     }
 }
