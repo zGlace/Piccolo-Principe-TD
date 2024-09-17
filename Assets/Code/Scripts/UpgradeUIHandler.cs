@@ -17,6 +17,5 @@ public class UpgradeUIHandler : MonoBehaviour, IPointerEnterHandler, IPointerExi
     {
         mouse_over = false;
         UIManager.main.SetHoveringState(false);
-        gameObject.SetActive(false);
     }
 }

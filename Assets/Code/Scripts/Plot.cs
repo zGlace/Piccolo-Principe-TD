@@ -34,10 +34,18 @@ public class Plot : MonoBehaviour
 
         if (towerObj != null)
         {
-            // Open UI for regular turret or slow turret if they exist
+            // Open UI for regular turret or slow turret
             if (turret != null)
             {
-                turret.OpenUpgradeUI();
+                // Check if the upgrade UI is already active
+                if (turret.upgradeUI.activeSelf)
+                {
+                    turret.CloseUpgradeUI();  // Close the UI if it's already open
+                }
+                else
+                {
+                    turret.OpenUpgradeUI();   // Open the UI if it's not open yet
+                }
             }
             else if (turretSlow != null)
             {
@@ -72,6 +80,8 @@ public class Plot : MonoBehaviour
         if (turret != null)
         {
             turret.enabled = true;  // Enable shooting behavior for regular turret
+            turret.HideRange();
+            // turret.ForceCloseUpgradeUI();
         }
         else if (turretSlow != null)
         {

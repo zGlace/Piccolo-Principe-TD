@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1283406809723324631}
   - component: {fileID: 8628277489174928054}
   - component: {fileID: 8058747367948507654}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Plot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -147,3 +147,4 @@ MonoBehaviour:
   hoverColor: {r: 1, g: 1, b: 1, a: 1}
   towerObj: {fileID: 0}
   turret: {fileID: 0}
+  turretSlow: {fileID: 0}

@@ -14,9 +14,11 @@ public class Turret : MonoBehaviour
     [SerializeField] private LayerMask enemyMask;
     [SerializeField] private GameObject bulletPrefab;
     [SerializeField] private Transform firingPoint;
-    [SerializeField] private GameObject upgradeUI;
+    [SerializeField] public GameObject upgradeUI;
     [SerializeField] private Button upgradeButton;
     [SerializeField] private TextMeshProUGUI upgradeCostUI;
+    [SerializeField] private GameObject rangeIndicator;
+    [SerializeField] private SpriteRenderer rangeRenderer;
     
 
     [Header("Attributes")]
@@ -98,18 +100,6 @@ public class Turret : MonoBehaviour
         turretRotationPoint.rotation = Quaternion.RotateTowards(turretRotationPoint.rotation, targetRotation, rotationSpeed * Time.deltaTime);
     }
 
-    public void OpenUpgradeUI()
-    {
-        UpdateUpgradeCostUI();
-        upgradeUI.SetActive(true);
-    }
-
-    public void CloseUpgradeUI()
-    {
-        upgradeUI.SetActive(false);
-        UIManager.main.SetHoveringState(false);
-    }
-
     public void Upgrade()
     {
         // Check if turret has reached the max level to prevent further upgrades
@@ -163,6 +153,61 @@ public class Turret : MonoBehaviour
             int cost = CalculateCost();
             upgradeCostUI.text = cost.ToString(); // Update the UI with the calculated cost
             upgradeButton.interactable = true; // Ensure the button is interactable if below max level
+        }
+    }
+
+    public void OpenUpgradeUI()
+    {
+        UpdateUpgradeCostUI();
+        upgradeUI.SetActive(true);
+        ShowRange();
+    }
+
+    public void CloseUpgradeUI()
+    {
+        upgradeUI.SetActive(false);
+        UIManager.main.SetHoveringState(false);
+        HideRange();
+    }
+
+    /*
+    public void ForceCloseUpgradeUI()
+    {
+        upgradeUI.SetActive(false);
+        UIManager.main.SetHoveringState(false);
+    }
+    */
+    
+    public void ShowRange()
+    {
+        if (rangeIndicator != null)
+        {
+            rangeIndicator.SetActive(true);
+            
+            // Get the turret's current scale
+            float turretScaleFactor = transform.localScale.x; // Assuming uniform scaling
+
+            // Scale the range indicator based on the targetingRange and compensate for the turret's scale
+            float scaledRange = targetingRange * 2 / turretScaleFactor;  // Multiply by 2 because we want the diameter
+            
+            rangeIndicator.transform.localScale = new Vector3(scaledRange, scaledRange, 1);  // Scale only the x and y axes
+        }
+    }
+
+    public void HideRange()
+    {
+        if (rangeIndicator != null)
+        {
+            rangeIndicator.SetActive(false);
+        }
+    }
+
+    public void UpdateRangeColor(bool isValid)
+    {
+        if (rangeRenderer != null)
+        {
+            // Set color to green if valid, red if invalid
+            rangeRenderer.color = isValid ? new Color(0, 1, 0, 0.3f) : new Color(1, 0, 0, 0.3f);
         }
     }
 
