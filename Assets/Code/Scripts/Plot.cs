@@ -9,6 +9,7 @@ public class Plot : MonoBehaviour
     [SerializeField] private Color hoverColor;
 
     public GameObject towerObj;
+    public BaseTurret baseTurret;
     public Turret turret;
     public TurretSlow turretSlow;
     private Color startColor;
@@ -35,21 +36,17 @@ public class Plot : MonoBehaviour
         if (towerObj != null)
         {
             // Open UI for regular turret or slow turret
-            if (turret != null)
+            if (baseTurret != null)
             {
                 // Check if the upgrade UI is already active
-                if (turret.upgradeUI.activeSelf)
+                if (baseTurret.upgradeUI.activeSelf)
                 {
-                    turret.CloseUpgradeUI();  // Close the UI if it's already open
+                    baseTurret.CloseUpgradeUI();  // Close the UI if it's already open
                 }
                 else
                 {
-                    turret.OpenUpgradeUI();   // Open the UI if it's not open yet
+                    baseTurret.OpenUpgradeUI();   // Open the UI if it's not open yet
                 }
-            }
-            else if (turretSlow != null)
-            {
-                Debug.Log("Slow turret clicked - implement upgrade UI if needed");
             }
             return;
         }
@@ -67,8 +64,7 @@ public class Plot : MonoBehaviour
 
         towerObj = Instantiate(towerToBuild.prefab, transform.position, Quaternion.identity);
         
-        turret = towerObj.GetComponent<Turret>();
-        turretSlow = towerObj.GetComponent<TurretSlow>();
+        baseTurret = towerObj.GetComponent<BaseTurret>();
 
         // Re-enable the collider and turret shooting behavior once placed
         Collider2D col = towerObj.GetComponent<Collider2D>();
@@ -80,12 +76,13 @@ public class Plot : MonoBehaviour
         if (turret != null)
         {
             turret.enabled = true;  // Enable shooting behavior for regular turret
-            turret.HideRange();
+            baseTurret.HideRange();
             // turret.ForceCloseUpgradeUI();
         }
         else if (turretSlow != null)
         {
             turretSlow.enabled = true;  // Enable freezing behavior for slow turret
+            baseTurret.HideRange();
         }
 
         // Clear tower selection after placing

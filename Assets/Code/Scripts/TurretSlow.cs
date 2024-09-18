@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-public class TurretSlow : MonoBehaviour
+public class TurretSlow : BaseTurret
 {
-    [Header("References")]
-    [SerializeField] private LayerMask enemyMask;
-
     [Header("Attributes")]
-    [SerializeField] public float targetingRange = 5f;
     [SerializeField] private float aps = 4f; // Attacks per second
     [SerializeField] private float freezeTime = 1f;
 
-    private float timeUntilFire;
-    
+    private float apsBase;
+    private float freezeTimeBase;
+
+    protected override void Start()
+    {
+        apsBase = aps;
+        freezeTimeBase = freezeTime;
+        base.Start();
+    }
+
     private void Update()
     {
         timeUntilFire += Time.deltaTime;
@@ -49,9 +53,32 @@ public class TurretSlow : MonoBehaviour
         em.ResetSpeed();
     }
 
-    private void OnDrawGizmosSelected()
+    public override void Upgrade()
     {
-        Handles.color = Color.cyan;
-        Handles.DrawWireDisc(transform.position, transform.forward, targetingRange);
+        // Check if the player has enough currency
+        if (CalculateCost() > LevelManager.main.currency)
+        {
+            Debug.Log("Can't afford upgrade");
+            return;
+        }
+
+        base.Upgrade();
+
+        aps = CalculateAPS();
+        freezeTime = CalculateFreeze();
+        Debug.Log("New APS: " + aps);
+        Debug.Log("New FreezeTime: " + freezeTime);
+        Debug.Log("New Range: " + targetingRange);
+        Debug.Log("New Cost: " + CalculateCost());
+    }
+
+    private float CalculateAPS()
+    {
+        return apsBase * Mathf.Pow(level, 0.5f);
+    }
+
+    private float CalculateFreeze()
+    {
+        return freezeTimeBase * Mathf.Pow(level, 0.6f);
     }
 }

@@ -341,7 +341,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 16}
+  m_AnchoredPosition: {x: 0, y: 14.4}
   m_SizeDelta: {x: 0, y: -76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3218765179030986150
@@ -374,8 +374,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: UPGRADE
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 79dc16992ba09224387a1fa80b3a6139, type: 2}
-  m_sharedMaterial: {fileID: 4763424643238986915, guid: 79dc16992ba09224387a1fa80b3a6139, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 33f7fda5ec14dd348ab2bc226cf4a873, type: 2}
+  m_sharedMaterial: {fileID: -5919254352698503007, guid: 33f7fda5ec14dd348ab2bc226cf4a873, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -399,8 +399,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 44
+  m_fontSizeBase: 44
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -409,7 +409,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: -3
+  m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0
@@ -663,21 +663,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4956739406beb9419cdcc2b4bc454b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  turretRotationPoint: {fileID: 1067242151058313366}
   enemyMask:
     serializedVersion: 2
     m_Bits: 64
-  bulletPrefab: {fileID: 6175427519145779100, guid: d33d15ddb6433b741af03c287b29ca23, type: 3}
-  firingPoint: {fileID: 930304589198133209}
   upgradeUI: {fileID: 1838451369531782469}
   upgradeButton: {fileID: 1273408216221517248}
   upgradeCostUI: {fileID: 6835333245570135685}
   rangeIndicator: {fileID: 3128605177157383286}
   rangeRenderer: {fileID: 226846761237538235}
   targetingRange: 3
+  baseUpgradeCost: 400
+  turretRotationPoint: {fileID: 1067242151058313366}
+  bulletPrefab: {fileID: 6175427519145779100, guid: d33d15ddb6433b741af03c287b29ca23, type: 3}
+  firingPoint: {fileID: 930304589198133209}
   rotationSpeed: 250
   bps: 1
-  baseUpgradeCost: 400
 --- !u!1 &6235477330563936452
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,7 +744,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -22}
+  m_AnchoredPosition: {x: 0, y: -23.59999}
   m_SizeDelta: {x: 0, y: -76}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4664378425560283135
@@ -777,8 +777,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 0
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 79dc16992ba09224387a1fa80b3a6139, type: 2}
-  m_sharedMaterial: {fileID: 4763424643238986915, guid: 79dc16992ba09224387a1fa80b3a6139, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 33f7fda5ec14dd348ab2bc226cf4a873, type: 2}
+  m_sharedMaterial: {fileID: -5919254352698503007, guid: 33f7fda5ec14dd348ab2bc226cf4a873, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -802,8 +802,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 44
+  m_fontSizeBase: 44
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -812,7 +812,7 @@ MonoBehaviour:
   m_HorizontalAlignment: 2
   m_VerticalAlignment: 512
   m_textAlignment: 65535
-  m_characterSpacing: -3
+  m_characterSpacing: 0
   m_wordSpacing: 0
   m_lineSpacing: 0
   m_lineSpacingMax: 0

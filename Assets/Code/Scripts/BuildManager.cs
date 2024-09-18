@@ -12,7 +12,7 @@ public class BuildManager : MonoBehaviour
 
     private int selectedTower = -1;  // -1 means no tower selected
     private GameObject towerPreview; // Tower sprite that will follow the cursor
-    private Turret turretPreviewScript; // Reference to the Turret component in the preview
+    private BaseTurret turretPreviewScript; // Reference to the Turret component in the preview
 
     private void Awake()
     {
@@ -39,8 +39,8 @@ public class BuildManager : MonoBehaviour
             }
         }
 
-        // Cancel the preview with Esc
-        if (Input.GetKeyDown(KeyCode.Escape) && towerPreview != null)
+        // Cancel the preview with right mouse click (1)
+        if (Input.GetMouseButtonDown(1) && towerPreview != null)
         {
             CancelTowerPreview();
         }
@@ -67,7 +67,7 @@ public class BuildManager : MonoBehaviour
         if (selectedTower >= 0)
         {
             towerPreview = Instantiate(towers[selectedTower].prefab);
-            turretPreviewScript = towerPreview.GetComponent<Turret>();
+            turretPreviewScript = towerPreview.GetComponent<BaseTurret>();
 
             // Disable any collider for preview so it doesn't interfere with gameplay
             Collider2D col = towerPreview.GetComponent<Collider2D>();
@@ -76,7 +76,7 @@ public class BuildManager : MonoBehaviour
                 col.enabled = false;
             }
 
-            // Show the range circle immediately and set its color to red initially
+            // Show the range circle
             turretPreviewScript.ShowRange();
             turretPreviewScript.UpdateRangeColor(false);
 
@@ -93,6 +93,7 @@ public class BuildManager : MonoBehaviour
             else if (turretSlowComponent != null)
             {
                 turretSlowComponent.enabled = false; // Disable freezing turret behavior
+                turretSlowComponent.ShowRange();
             }
         }
     }
@@ -104,7 +105,7 @@ public class BuildManager : MonoBehaviour
         // Remove tower preview
         if (towerPreview != null)
         {
-            Turret turretComponent = towerPreview.GetComponent<Turret>();
+            BaseTurret turretComponent = towerPreview.GetComponent<BaseTurret>();
             if (turretComponent != null)
             {
                 turretComponent.HideRange();  // Hide range when canceling preview
