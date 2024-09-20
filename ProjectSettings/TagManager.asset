@@ -47,6 +47,9 @@ TagManager:
   - name: Plots
     uniqueID: 1244773395
     locked: 0
+  - name: Props
+    uniqueID: 1389328103
+    locked: 0
   - name: Turrets and Enemies
     uniqueID: 1452975231
     locked: 0

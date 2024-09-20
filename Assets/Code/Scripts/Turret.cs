@@ -64,9 +64,41 @@ public class Turret : BaseTurret
     {
         RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, targetingRange, (Vector2)transform.position, 0f, enemyMask);
 
-        if (hits.Length > 0)
+        Transform bestTarget = null;
+        int highestPathIndex = -1; // Initial value for comparison
+        float closestDistance = Mathf.Infinity; // Initialize to a large value
+
+        foreach (RaycastHit2D hit in hits)
         {
-            target = hits[0].transform;
+            EnemyMovement enemy = hit.transform.GetComponent<EnemyMovement>();
+            if (enemy != null)
+            {
+                int enemyPathIndex = enemy.GetPathIndex();
+                
+                // Check if this enemy is further along the path
+                if (enemyPathIndex > highestPathIndex)
+                {
+                    highestPathIndex = enemyPathIndex;
+                    bestTarget = enemy.transform;
+                    closestDistance = Vector2.Distance(transform.position, enemy.transform.position); // Update closest distance as well
+                }
+                // If the enemy is at the same pathIndex, then check which is closer
+                else if (enemyPathIndex == highestPathIndex)
+                {
+                    float distance = Vector2.Distance(transform.position, enemy.transform.position);
+                    if (distance < closestDistance)
+                    {
+                        bestTarget = enemy.transform;
+                        closestDistance = distance;
+                    }
+                }
+            }
+        }
+
+        // Set the target if a valid one was found
+        if (bestTarget != null)
+        {
+            target = bestTarget;
         }
     }
 

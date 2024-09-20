@@ -1,4 +1,0 @@
-repository "Little Prince Tower Defense@zGlace@cloud"
-  path "/"
-    br "/main"
-    co "/main"

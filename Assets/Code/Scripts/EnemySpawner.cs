@@ -2,19 +2,26 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-using UnityEngine.EventSystems;
+using TMPro;
 
 public class EnemySpawner : MonoBehaviour
 {
+    [System.Serializable]
+    public class Wave
+    {
+        public GameObject[] enemiesInWave;  // Enemies that spawn during this wave
+    }
+
     [Header("References")]
-    [SerializeField] private GameObject[] enemyPrefabs; // Array because we will have multiple enemies
+    [SerializeField] private TextMeshProUGUI waveText;  // Display wave progress
 
     [Header("Attributes")]
-    [SerializeField] private int baseEnemies = 8;
+    [SerializeField] private List<Wave> waves = new List<Wave>();  // List of wave objects, each containing enemies for that wave
     [SerializeField] private float enemiesPerSecond = 0.5f;
     [SerializeField] private float timeBetweenWaves = 5f;
     [SerializeField] private float difficultyScalingFactor = 0.5f;
     [SerializeField] private float enemiesPerSecondCap = 15f;
+    [SerializeField] private int maxWave = 10;
 
     [Header("Events")]
     public static UnityEvent onEnemyDestroy = new UnityEvent();
@@ -34,6 +41,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
+        UpdateWaveUI();
         StartCoroutine(StartWave());
     }
 
@@ -74,25 +82,74 @@ public class EnemySpawner : MonoBehaviour
     {
         isSpawning = false;
         timeSinceLastSpawn = 0f;
-        currentWave++;
-        StartCoroutine(StartWave());
+
+        if (currentWave >= maxWave)
+        {
+            EndGame();
+        }
+        else
+        {
+            currentWave++;
+            UpdateWaveUI();
+            StartCoroutine(StartWave());
+        }
     }
 
     private void SpawnEnemy()
     {
-        int index = Random.Range(0, enemyPrefabs.Length);
-        GameObject prefabToSpawn = enemyPrefabs[index];
-        Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity);
-        Debug.Log("Spawn Enemy");
+        if (currentWave - 1 >= waves.Count) return;  // Safety check if currentWave exceeds list count
+        
+        // Access the list of enemies specific to the current wave
+        GameObject[] currentWaveEnemies = waves[currentWave - 1].enemiesInWave; 
+
+        if (currentWaveEnemies.Length > 0)
+        {
+            int index = Random.Range(0, currentWaveEnemies.Length);  // Randomly pick from that wave's enemies
+            GameObject prefabToSpawn = currentWaveEnemies[index];
+            Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity);
+            Debug.Log("Enemy Spawned");
+        }
     }
 
     private int EnemiesPerWave()
     {
-        return Mathf.RoundToInt(baseEnemies * Mathf.Pow(currentWave, difficultyScalingFactor)); // Make it so the game gets gradually harder every wave
+        return Mathf.RoundToInt(waves[currentWave - 1].enemiesInWave.Length);  // Depends on how many enemies are in the wave
     }
 
     private float EnemiesPerSecond()
     {
         return Mathf.Clamp(enemiesPerSecond * Mathf.Pow(currentWave, difficultyScalingFactor), 0f, enemiesPerSecondCap);
+    }
+
+    private void EndGame()
+    {
+        // Stop spawning and trigger the end of the level
+        Debug.Log("Congratulations! You've completed all the waves!");
+
+        // TODO: Implement the logic for showing the congratulatory screen and moving to the next level
+    }
+
+    private void UpdateWaveUI()
+    {
+        // Update the wave UI display (e.g., "Wave 1/10")
+        waveText.text = $"Wave {currentWave}/{maxWave}";
+    }
+
+    private void OnValidate()
+    {
+        // Ensure that the waves array is always the same size as maxWave
+        if (waves.Count > maxWave)
+        {
+            // Remove excess waves if the count is greater than maxWave
+            waves.RemoveRange(maxWave, waves.Count - maxWave);
+        }
+        else if (waves.Count < maxWave)
+        {
+            // Add empty waves if the count is less than maxWave
+            while (waves.Count < maxWave)
+            {
+                waves.Add(new Wave());
+            }
+        }
     }
 }
