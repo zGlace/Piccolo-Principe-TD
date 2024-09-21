@@ -39,7 +39,17 @@ public class EnemyMovement : MonoBehaviour
 
         if (isPathEnded())
         {
-            EnemySpawner.onEnemyReachedEnd.Invoke();
+            if (CompareTag("BossEnemy"))
+            {
+                // Trigger instant game over when the boss reaches the end
+                Debug.Log("The boss has reached the end. Game Over!");
+                player.TakeDamage(player.maxHealth); // Instantly deplete player health
+            }
+            else
+            {
+                EnemySpawner.onEnemyReachedEnd.Invoke(); // Regular enemy reaches the end
+            }
+
             EnemySpawner.onEnemyDestroy.Invoke();
             Destroy(gameObject);
             return;

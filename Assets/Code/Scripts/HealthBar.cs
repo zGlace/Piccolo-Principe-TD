@@ -17,7 +17,8 @@ public class HealthBar : MonoBehaviour
 
     public void SetHealth(int health)
 	{
+		if (!gameObject.activeInHierarchy) return;
+		
 		slider.value = health;
 	}
-
 }

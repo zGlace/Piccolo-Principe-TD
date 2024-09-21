@@ -13,7 +13,7 @@ public class EnemySpawner : MonoBehaviour
     }
 
     [Header("References")]
-    [SerializeField] private TextMeshProUGUI waveText;  // Display wave progress
+    [SerializeField] private TextMeshProUGUI waveText;  // To display wave progress (current wave / max wave)
 
     [Header("Attributes")]
     [SerializeField] private List<Wave> waves = new List<Wave>();  // List of wave objects, each containing enemies for that wave
@@ -21,7 +21,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float timeBetweenWaves = 5f;
     [SerializeField] private float difficultyScalingFactor = 0.5f;
     [SerializeField] private float enemiesPerSecondCap = 15f;
-    [SerializeField] private int maxWave = 10;
+    [SerializeField] private int maxWave = 10;  // Maximum number of waves
 
     [Header("Events")]
     public static UnityEvent onEnemyDestroy = new UnityEvent();
@@ -107,7 +107,7 @@ public class EnemySpawner : MonoBehaviour
             int index = Random.Range(0, currentWaveEnemies.Length);  // Randomly pick from that wave's enemies
             GameObject prefabToSpawn = currentWaveEnemies[index];
             Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity);
-            Debug.Log("Enemy Spawned");
+            Debug.Log("Spawn Enemy");
         }
     }
 
@@ -126,7 +126,7 @@ public class EnemySpawner : MonoBehaviour
         // Stop spawning and trigger the end of the level
         Debug.Log("Congratulations! You've completed all the waves!");
 
-        // TODO: Implement the logic for showing the congratulatory screen and moving to the next level
+        // TODO: Implement the logic for moving to the next level
     }
 
     private void UpdateWaveUI()
