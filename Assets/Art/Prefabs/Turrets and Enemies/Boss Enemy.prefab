@@ -164,7 +164,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 7697959986483409342}
-  moveSpeed: 0.75
+  moveSpeed: 0.5
   player: {fileID: 7064109826090931087, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
 --- !u!114 &4210684763514627570
 MonoBehaviour:
@@ -180,7 +180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHealthUI: {fileID: 4860926590246780445}
   healthBarSlider: {fileID: 2675218641424182217}
-  maxHitPoints: 75
+  maxHitPoints: 100
   currencyWorth: 1000
 --- !u!1 &3193135181730328261
 GameObject:
@@ -259,7 +259,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 8554423867683891907}
   m_HandleRect: {fileID: 0}

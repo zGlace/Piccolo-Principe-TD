@@ -1,15 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class LevelManager : MonoBehaviour
 {
     [Header("References")]
     [SerializeField] public Transform startPoint;
     [SerializeField] public Transform[] path;
+
     [Header("Attributes")]
     [SerializeField] private int startingCurrency = 200;
     [SerializeField] public int currency;
+
+    [Header("Events")]
+    public static UnityEvent onEnemyDestroy = new UnityEvent();
+    public static UnityEvent onEnemyReachedEnd = new UnityEvent();
+    public static UnityEvent onBossDefeated = new UnityEvent();
 
     public static LevelManager main;
     
@@ -34,8 +41,7 @@ public class LevelManager : MonoBehaviour
         {
             currency -= amount;
             return true;
-        } else {
-            return false;
         }
+        return false;
     }
 }

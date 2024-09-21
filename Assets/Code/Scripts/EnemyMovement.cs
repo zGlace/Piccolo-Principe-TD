@@ -31,31 +31,32 @@ public class EnemyMovement : MonoBehaviour
 
     private void UpdatePath()
     {
-
-        if (!isCollidingWithCheckpoint())
-            return;
+        if (!isCollidingWithCheckpoint()) return;
 
         pathIndex++;
 
         if (isPathEnded())
         {
-            if (CompareTag("BossEnemy"))
-            {
-                // Trigger instant game over when the boss reaches the end
-                Debug.Log("The boss has reached the end. Game Over!");
-                player.TakeDamage(player.maxHealth); // Instantly deplete player health
-            }
-            else
-            {
-                EnemySpawner.onEnemyReachedEnd.Invoke(); // Regular enemy reaches the end
-            }
-
-            EnemySpawner.onEnemyDestroy.Invoke();
-            Destroy(gameObject);
+            EndOfPath();
             return;
         }
 
         target = LevelManager.main.path[pathIndex];
+    }
+
+    private void EndOfPath()
+    {
+        if (CompareTag("BossEnemy"))
+        {
+            Debug.Log("The boss has reached the end. Game Over!");
+            player.QuitGame();
+        }
+        else
+        {
+            LevelManager.onEnemyReachedEnd.Invoke();
+            LevelManager.onEnemyDestroy.Invoke();
+        }
+        Destroy(gameObject);
     }
 
     private bool isCollidingWithCheckpoint()

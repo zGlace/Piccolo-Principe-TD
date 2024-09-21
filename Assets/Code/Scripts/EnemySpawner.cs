@@ -23,10 +23,6 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float enemiesPerSecondCap = 15f;
     [SerializeField] private int maxWave = 10;  // Maximum number of waves
 
-    [Header("Events")]
-    public static UnityEvent onEnemyDestroy = new UnityEvent();
-    public static UnityEvent onEnemyReachedEnd = new UnityEvent();
-
     private int currentWave = 1;
     private float timeSinceLastSpawn;
     private int enemiesAlive;
@@ -36,7 +32,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
-        onEnemyDestroy.AddListener(EnemyDestroyed);
+        LevelManager.onEnemyDestroy.AddListener(EnemyDestroyed);
     }
 
     private void Start()
@@ -65,11 +61,6 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
-    private void EnemyDestroyed()
-    {
-        enemiesAlive--;
-    }
-
     private IEnumerator StartWave()
     {
         yield return new WaitForSeconds(timeBetweenWaves);
@@ -85,7 +76,7 @@ public class EnemySpawner : MonoBehaviour
 
         if (currentWave >= maxWave)
         {
-            EndGame();
+            GameWon();
         }
         else
         {
@@ -107,7 +98,7 @@ public class EnemySpawner : MonoBehaviour
             int index = Random.Range(0, currentWaveEnemies.Length);  // Randomly pick from that wave's enemies
             GameObject prefabToSpawn = currentWaveEnemies[index];
             Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity);
-            Debug.Log("Spawn Enemy");
+            Debug.Log($"{prefabToSpawn.name} Spawned");
         }
     }
 
@@ -121,7 +112,17 @@ public class EnemySpawner : MonoBehaviour
         return Mathf.Clamp(enemiesPerSecond * Mathf.Pow(currentWave, difficultyScalingFactor), 0f, enemiesPerSecondCap);
     }
 
-    private void EndGame()
+    private void EnemyDestroyed()
+    {
+        enemiesAlive--;
+    }
+
+    private void OnDestroy()
+    {
+        LevelManager.onEnemyDestroy.RemoveListener(EnemyDestroyed);
+    }
+
+    private void GameWon()
     {
         // Stop spawning and trigger the end of the level
         Debug.Log("Congratulations! You've completed all the waves!");

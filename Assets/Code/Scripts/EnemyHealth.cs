@@ -27,7 +27,7 @@ public class EnemyHealth : MonoBehaviour
         }
     }
 
-    public void TakeDamage(float dmg)
+    public void EnemyTakeDamage(float dmg)
     {
         enemyHealthUI.SetActive(true);
         
@@ -40,7 +40,7 @@ public class EnemyHealth : MonoBehaviour
 
         if (currentHitPoints <= 0 && !isDestroyed)
         {
-            EnemySpawner.onEnemyDestroy.Invoke();
+            LevelManager.onEnemyDestroy.Invoke();
             LevelManager.main.IncreaseCurrency(currencyWorth);
             isDestroyed = true;
 
