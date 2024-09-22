@@ -17,11 +17,16 @@ public class EnemyMovement : MonoBehaviour
     private float pathTargetRange = 0.1f;
     private float baseSpeed;
     public Player player;
+    // private Animator animator;
+    // private SpriteRenderer spriteRenderer;
+
 
     private void Start()
     {
         baseSpeed = moveSpeed;
         target = LevelManager.main.path[pathIndex];
+        // spriteRenderer = GetComponent<SpriteRenderer>();
+        // animator = GetComponent<Animator>(); 
     }
 
     private void Update()
@@ -79,6 +84,61 @@ public class EnemyMovement : MonoBehaviour
         Vector2 direction = (target.position - transform.position).normalized; // "normalized" makes it so that the direction only goes between 0 and 1
 
         rb.velocity = direction * moveSpeed;
+
+        /*
+        if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
+        {
+            if (direction.x > 0)
+            {
+                if (gameObject.CompareTag("BossEnemy"))
+                {
+                    animator.Play("KingWalkingRightLeft"); 
+                    spriteRenderer.flipX = false;
+                }
+                else
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, 90); 
+                }
+            }
+            else
+            {
+                if (gameObject.CompareTag("BossEnemy"))
+                {
+                    animator.Play("KingWalkingRightLeft"); 
+                    spriteRenderer.flipX = true;
+                }
+                else
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, -90); 
+                }
+            }
+        }
+        else
+        {
+            if (direction.y > 0)
+            {
+                if (gameObject.CompareTag("BossEnemy"))
+                {
+                    animator.Play("KingWalkingNorth");
+                }
+                else
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, 180);
+                }
+            }
+            else
+            {
+                if (gameObject.CompareTag("BossEnemy"))
+                {
+                    animator.Play("KingWalkingStraight");
+                }
+                else
+                {
+                    transform.rotation = Quaternion.Euler(0, 0, 0); 
+                }
+            }
+        }
+        */
     }
 
     public void UpdateSpeed(float newSpeed)
