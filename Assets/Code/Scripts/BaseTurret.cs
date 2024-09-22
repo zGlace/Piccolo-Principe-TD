@@ -82,7 +82,7 @@ public abstract class BaseTurret : MonoBehaviour
         }
     }
 
-    public void ShowRange()
+    public virtual void ShowRange()
     {
         if (rangeIndicator != null)
         {
@@ -95,7 +95,7 @@ public abstract class BaseTurret : MonoBehaviour
         }
     }
 
-    public void HideRange()
+    public virtual void HideRange()
     {
         if (rangeIndicator != null)
         {

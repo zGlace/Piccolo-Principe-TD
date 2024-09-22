@@ -514,8 +514,9 @@ MonoBehaviour:
   rangeRenderer: {fileID: 8839099379472971235}
   targetingRange: 2
   baseUpgradeCost: 1000
-  aps: 0.25
-  freezeTime: 1
+  aps: 0.3
+  freezeTime: 1.4
+  slowEffectColor: {r: 0.31372547, g: 0.9138073, b: 1, a: 0.7372549}
 --- !u!1 &6235477330563936452
 GameObject:
   m_ObjectHideFlags: 0
@@ -831,7 +832,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.04150939, g: 0.04150939, b: 0.04150939, a: 0.27450982}
+  m_Color: {r: 0, g: 0.9396677, b: 1, a: 0.27450982}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

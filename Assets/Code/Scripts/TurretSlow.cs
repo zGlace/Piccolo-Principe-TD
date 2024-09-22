@@ -1,13 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEditor;
 
 public class TurretSlow : BaseTurret
 {
     [Header("Attributes")]
     [SerializeField] private float aps = 4f; // Attacks per second
     [SerializeField] private float freezeTime = 1f;
+    [SerializeField] private Color slowEffectColor = Color.blue; // Color to apply when enemies are slowed
 
     private float apsBase;
     private float freezeTimeBase;
@@ -16,7 +16,11 @@ public class TurretSlow : BaseTurret
     {
         apsBase = aps;
         freezeTimeBase = freezeTime;
+
         base.Start();
+        
+        // Always show the targeting range for the slow turret
+        ShowRange();
     }
 
     private void Update()
@@ -32,7 +36,7 @@ public class TurretSlow : BaseTurret
 
     private void FreezeEnemies()
     {
-        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, targetingRange, (Vector2)transform.position, 0f, enemyMask);
+        RaycastHit2D[] hits = Physics2D.CircleCastAll(transform.position, targetingRange, Vector2.zero, 0f, enemyMask);
 
         if (hits.Length > 0)
         {
@@ -40,17 +44,33 @@ public class TurretSlow : BaseTurret
             {
                 RaycastHit2D hit = hits[i];
                 EnemyMovement em = hit.transform.GetComponent<EnemyMovement>();
-                em.UpdateSpeed(0.5f);
-
-                StartCoroutine(ResetEnemySpeed(em));
+                if (em != null)
+                {
+                    // Slow down the enemy and change its color
+                    em.UpdateSpeed(0.5f);
+                    StartCoroutine(ApplySlowEffect(em));
+                }
             }
         }
     }
 
-    private IEnumerator ResetEnemySpeed(EnemyMovement em)
+    private IEnumerator ApplySlowEffect(EnemyMovement em)
     {
-        yield return new WaitForSeconds(freezeTime);
-        em.ResetSpeed();
+        SpriteRenderer enemyRenderer = em.GetComponent<SpriteRenderer>();
+        if (enemyRenderer != null)
+        {
+            Color originalColor = enemyRenderer.color;
+            enemyRenderer.color = slowEffectColor; // Change to slow effect color
+
+            yield return new WaitForSeconds(freezeTime); // Wait for the freeze time
+
+            // Check if the enemy and its sprite renderer still exist before changing the color back
+            if (enemyRenderer != null && em != null && em.gameObject != null)
+            {
+                enemyRenderer.color = originalColor; // Restore the original color
+            }
+            em.ResetSpeed(); // Reset the enemy's speed
+        }
     }
 
     public override void Upgrade()
@@ -62,7 +82,14 @@ public class TurretSlow : BaseTurret
             return;
         }
 
-        base.Upgrade();
+        if (level >= maxLevel) return;
+
+        LevelManager.main.SpendCurrency(CalculateCost());
+
+        level++;
+        targetingRange = CalculateRange();
+        UpdateUpgradeCostUI();
+        ShowRange();
 
         aps = CalculateAPS();
         freezeTime = CalculateFreeze();
@@ -79,6 +106,23 @@ public class TurretSlow : BaseTurret
 
     private float CalculateFreeze()
     {
-        return freezeTimeBase * Mathf.Pow(level, 0.6f);
+        return freezeTimeBase * Mathf.Pow(level, 0.4f);
+    }
+
+    // Override base class to keep the range always visible
+    public override void ShowRange()
+    {
+        if (rangeIndicator != null)
+        {
+            rangeIndicator.SetActive(true);
+            float turretScaleFactor = transform.localScale.x;
+            float scaledRange = targetingRange * 2 / turretScaleFactor;
+            rangeIndicator.transform.localScale = new Vector3(scaledRange, scaledRange, 1);
+        }
+    }
+
+    public override void HideRange()
+    {
+        // Do nothing to keep the range always visible
     }
 }
