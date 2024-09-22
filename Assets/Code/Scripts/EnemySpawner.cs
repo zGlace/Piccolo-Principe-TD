@@ -35,6 +35,8 @@ public class EnemySpawner : MonoBehaviour
     private int enemiesLeftToSpawn;
     private float eps; // Enemies per second
     private bool isSpawning = false;
+    public GameObject VictoryCanvas;
+    
 
     private void Awake()
     {
@@ -142,11 +144,17 @@ public class EnemySpawner : MonoBehaviour
             PlayerPrefs.Save();
         }
     }
+
+    private void LoadVictory()
+    {
+        VictoryCanvas.SetActive(true);
+    }
     private void EndGame()
     {
         // Stop spawning and trigger the end of the level
         Debug.Log("Congratulations! You've completed all the waves!");
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        LoadVictory();
+        // SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
         // TODO: Implement the logic for moving to the next level
     }
