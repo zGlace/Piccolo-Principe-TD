@@ -10,10 +10,12 @@ public class EnemyHealth : MonoBehaviour
     [SerializeField] private Slider healthBarSlider;
     
     [Header("Attributes")]
-    [SerializeField] private float maxHitPoints = 2;
+    [SerializeField] public float maxHitPoints = 2;
     [SerializeField] private int currencyWorth = 50;
 
-    private float currentHitPoints;
+    [HideInInspector]
+    public float currentHitPoints;
+
     private bool isDestroyed = false;
 
     private void Start()
@@ -25,6 +27,20 @@ public class EnemyHealth : MonoBehaviour
             healthBarSlider.maxValue = maxHitPoints;
             healthBarSlider.value = maxHitPoints;
         }
+    }
+
+    public void Heal(float healAmount)
+    {
+        if (isDestroyed) return; // Don't heal if the enemy is destroyed
+
+        currentHitPoints += healAmount;
+        if (currentHitPoints > maxHitPoints)
+        {
+            currentHitPoints = maxHitPoints; // Cap the HP at max
+        }
+        healthBarSlider.value = currentHitPoints;
+
+        Debug.Log($"{gameObject.name} healed by {healAmount}. Current HP: {currentHitPoints}");
     }
 
     public void EnemyTakeDamage(float dmg)

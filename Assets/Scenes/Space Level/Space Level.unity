@@ -3972,7 +3972,7 @@ Tilemap:
     m_Data: {r: 1, g: 1, b: 1, a: 1}
   m_TileObjectToInstantiateArray: []
   m_AnimationFrameRate: 1
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.49019608}
   m_Origin: {x: -14, y: -8, z: 0}
   m_Size: {x: 30, y: 21, z: 1}
   m_TileAnchor: {x: 0.5, y: 0.5, z: 0}
@@ -19026,6 +19026,7 @@ MonoBehaviour:
   - {fileID: 615874431568051653, guid: 9d80637259489ec4ca3f79f4a5a2b54e, type: 3}
   - {fileID: 615874431568051653, guid: daebcb143e1c90443b15fda250aff99c, type: 3}
   - {fileID: 615874431568051653, guid: 7c6d5d56cf69f714d9096754a86d223a, type: 3}
+  - {fileID: 615874431568051653, guid: c005e0410eebdc24aaae155910fedaa6, type: 3}
   enemiesPerMiniWave: 5
   timeBetweenMiniWaves: 10
   enemiesPerSecond: 1
