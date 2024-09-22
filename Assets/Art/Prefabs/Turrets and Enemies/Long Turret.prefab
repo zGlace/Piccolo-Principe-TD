@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 9065617725800393596}
   - component: {fileID: 481796289538141827}
   - component: {fileID: 5700487789664497856}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Upgrade UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,7 +126,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 930304589198133209}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FiringPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -159,7 +159,7 @@ GameObject:
   - component: {fileID: 7226479359737991768}
   - component: {fileID: 8507236901984936272}
   - component: {fileID: 3669451427072386166}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -233,7 +233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2161363904011399559}
   - component: {fileID: 226846761237538235}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Range Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -318,7 +318,7 @@ GameObject:
   - component: {fileID: 8882738242660631923}
   - component: {fileID: 3218765179030986150}
   - component: {fileID: 3603773788531887364}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Upgrade Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -453,7 +453,7 @@ GameObject:
   - component: {fileID: 8867120983535721384}
   - component: {fileID: 5363573877116469430}
   - component: {fileID: 1273408216221517248}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Upgrade Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -574,7 +574,7 @@ GameObject:
   - component: {fileID: 8507144706072723946}
   - component: {fileID: 6368650861941221306}
   - component: {fileID: 7595117392004320208}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Long Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -677,7 +677,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 6175427519145779100, guid: d33d15ddb6433b741af03c287b29ca23, type: 3}
   firingPoint: {fileID: 930304589198133209}
   rotationSpeed: 175
-  bps: 0.85
+  bps: 0.9
 --- !u!1 &6235477330563936452
 GameObject:
   m_ObjectHideFlags: 0
@@ -687,7 +687,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1067242151058313366}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RotatePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -721,7 +721,7 @@ GameObject:
   - component: {fileID: 9144047559988280405}
   - component: {fileID: 4664378425560283135}
   - component: {fileID: 6835333245570135685}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Upgrade Currency
   m_TagString: Untagged
   m_Icon: {fileID: 0}

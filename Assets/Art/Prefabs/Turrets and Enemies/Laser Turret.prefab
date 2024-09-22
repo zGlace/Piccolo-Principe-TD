@@ -575,7 +575,7 @@ GameObject:
   - component: {fileID: 6368650861941221306}
   - component: {fileID: 7595117392004320208}
   m_Layer: 8
-  m_Name: Mini Turret
+  m_Name: Laser Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -641,7 +641,7 @@ SpriteRenderer:
   m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 2747690628134850419, guid: b670ab75dde984907b8570040daa08c5, type: 3}
-  m_Color: {r: 1, g: 0.5907354, b: 0, a: 1}
+  m_Color: {r: 0.05377711, g: 0.083566494, b: 0.3433962, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -671,13 +671,13 @@ MonoBehaviour:
   upgradeCostUI: {fileID: 6835333245570135685}
   rangeIndicator: {fileID: 3128605177157383286}
   rangeRenderer: {fileID: 226846761237538235}
-  targetingRange: 2.25
-  baseUpgradeCost: 850
+  targetingRange: 3.5
+  baseUpgradeCost: 1400
   turretRotationPoint: {fileID: 1067242151058313366}
-  bulletPrefab: {fileID: 6175427519145779100, guid: d52af83ae8ad2a448a9f0819a5694537, type: 3}
+  bulletPrefab: {fileID: 6175427519145779100, guid: 95b220c15760cd7418c5f2eb1b067eb8, type: 3}
   firingPoint: {fileID: 930304589198133209}
-  rotationSpeed: 400
-  bps: 2
+  rotationSpeed: 100
+  bps: 0.5
 --- !u!1 &6235477330563936452
 GameObject:
   m_ObjectHideFlags: 0

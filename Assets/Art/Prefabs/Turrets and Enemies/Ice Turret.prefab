@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 930304589198133209}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: FiringPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 8161031769181849211}
   - component: {fileID: 4706391856721976142}
   - component: {fileID: 3959681844897232339}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Upgrade UI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -160,7 +160,7 @@ GameObject:
   - component: {fileID: 7719901527542610004}
   - component: {fileID: 7853774585998298964}
   - component: {fileID: 538865159744985378}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Upgrade Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -281,7 +281,7 @@ GameObject:
   - component: {fileID: 2094651999178278073}
   - component: {fileID: 523186811830232910}
   - component: {fileID: 3916302054908286214}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Upgrade Currency
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,7 +415,7 @@ GameObject:
   - component: {fileID: 8507144706072723946}
   - component: {fileID: 6368650861941221306}
   - component: {fileID: 1783563273428671053}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ice Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -525,7 +525,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1067242151058313366}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: RotatePoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -559,7 +559,7 @@ GameObject:
   - component: {fileID: 1122781146703154844}
   - component: {fileID: 2361157740334914669}
   - component: {fileID: 6607828924687963937}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Upgrade Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -693,7 +693,7 @@ GameObject:
   - component: {fileID: 2285858894921017732}
   - component: {fileID: 6062571150035006615}
   - component: {fileID: 6355951923734040850}
-  m_Layer: 5
+  m_Layer: 8
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -767,7 +767,7 @@ GameObject:
   m_Component:
   - component: {fileID: 864245985653360612}
   - component: {fileID: 8839099379472971235}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Range Indicator
   m_TagString: Untagged
   m_Icon: {fileID: 0}
