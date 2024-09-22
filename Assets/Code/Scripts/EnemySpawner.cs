@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -22,6 +23,7 @@ public class EnemySpawner : MonoBehaviour
     [SerializeField] private float difficultyScalingFactor = 0.5f;
     [SerializeField] private float enemiesPerSecondCap = 15f;
     [SerializeField] private int maxWave = 10;  // Maximum number of waves
+    [SerializeField] private List<Scene> _sceneList;
 
     [Header("Events")]
     public static UnityEvent onEnemyDestroy = new UnityEvent();
@@ -85,6 +87,7 @@ public class EnemySpawner : MonoBehaviour
 
         if (currentWave >= maxWave)
         {
+            UnlockLevel();
             EndGame();
         }
         else
@@ -121,10 +124,29 @@ public class EnemySpawner : MonoBehaviour
         return Mathf.Clamp(enemiesPerSecond * Mathf.Pow(currentWave, difficultyScalingFactor), 0f, enemiesPerSecondCap);
     }
 
+    /* public void LoadNextScene()
+    {
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+
+        if (currentScene < _sceneList.Count)
+            SceneManager.LoadScene(_sceneList[currentScene + 1].buildIndex);
+        else
+            print("Its last scene"); 
+    } */
+    void UnlockLevel()
+    {
+        if(SceneManager.GetActiveScene().buildIndex >= PlayerPrefs.GetInt("ReachedIndex"))
+        {
+            PlayerPrefs.SetInt("ReachedIndex", SceneManager.GetActiveScene().buildIndex + 1);
+            PlayerPrefs.SetInt("UnlockedLevel", PlayerPrefs.GetInt("UnlockedLevel" + 1) + 1);
+            PlayerPrefs.Save();
+        }
+    }
     private void EndGame()
     {
         // Stop spawning and trigger the end of the level
         Debug.Log("Congratulations! You've completed all the waves!");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
 
         // TODO: Implement the logic for moving to the next level
     }

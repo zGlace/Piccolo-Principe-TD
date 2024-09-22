@@ -10117,6 +10117,7 @@ MonoBehaviour:
   difficultyScalingFactor: 0.5
   enemiesPerSecondCap: 15
   maxWave: 5
+  _sceneList: []
 --- !u!114 &1056260383
 MonoBehaviour:
   m_ObjectHideFlags: 0
