@@ -12,8 +12,10 @@ public class EnemySpawner : MonoBehaviour
         public GameObject[] enemiesInWave;  // Enemies that spawn during this wave
     }
 
-    [Header("References")]
+    [Header("Animation References")]
     [SerializeField] private TextMeshProUGUI waveText;  // To display wave progress (current wave / max wave)
+    [SerializeField] private Animator waveTextAnimator;
+    [SerializeField] private string wavePulseAnim;
 
     [Header("Attributes")]
     [SerializeField] private List<Wave> waves = new List<Wave>();  // List of wave objects, each containing enemies for that wave
@@ -82,6 +84,10 @@ public class EnemySpawner : MonoBehaviour
         {
             currentWave++;
             UpdateWaveUI();
+            if (waveTextAnimator != null)
+            {
+                waveTextAnimator.Play(wavePulseAnim, 0, 0.0f);
+            }
             StartCoroutine(StartWave());
         }
     }
@@ -133,7 +139,7 @@ public class EnemySpawner : MonoBehaviour
     private void UpdateWaveUI()
     {
         // Update the wave UI display (e.g., "Wave 1/10")
-        waveText.text = $"Wave {currentWave}/{maxWave}";
+        waveText.text = $"{currentWave}/{maxWave}";
     }
 
     private void OnValidate()

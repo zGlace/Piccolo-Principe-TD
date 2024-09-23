@@ -39,8 +39,6 @@ public class EnemyHealth : MonoBehaviour
             currentHitPoints = maxHitPoints; // Cap the HP at max
         }
         healthBarSlider.value = currentHitPoints;
-
-        Debug.Log($"{gameObject.name} healed by {healAmount}. Current HP: {currentHitPoints}");
     }
 
     public void EnemyTakeDamage(float dmg)
