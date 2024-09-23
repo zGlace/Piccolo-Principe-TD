@@ -19045,7 +19045,7 @@ MonoBehaviour:
   volumeController: {fileID: 274541988}
   bloomIntensityDuringBoss: 45
   chromaticAberrationIntensityDuringBoss: 0.1
-  vignetteColorDuringBoss: {r: 0.98607045, g: 0.23113209, b: 1, a: 1}
+  vignetteColorDuringBoss: {r: 0.23137254, g: 0.35998425, b: 1, a: 1}
 --- !u!1001 &1058990400
 PrefabInstance:
   m_ObjectHideFlags: 0
