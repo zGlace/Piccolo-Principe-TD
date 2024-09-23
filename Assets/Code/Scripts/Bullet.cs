@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Bullet : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class Bullet : MonoBehaviour
     [Header("Attributes")]
     [SerializeField] private float bulletSpeed = 5f;
     [SerializeField] private float bulletDamage = 1;
+
 
     private Transform target;
 
@@ -31,7 +33,7 @@ public class Bullet : MonoBehaviour
     {
         other.gameObject.GetComponent<EnemyHealth>().EnemyTakeDamage(bulletDamage);
         Destroy(gameObject);
-    }
+}
 
     private void OnBecameInvisible()
     {

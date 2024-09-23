@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.Rendering;
 
 public abstract class BaseTurret : MonoBehaviour
 {
@@ -28,6 +29,7 @@ public abstract class BaseTurret : MonoBehaviour
         targetingRangeBase = targetingRange;
         upgradeButton.onClick.AddListener(Upgrade);
         UpdateUpgradeCostUI();
+
     }
 
     public virtual void OpenUpgradeUI()

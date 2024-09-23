@@ -7680,6 +7680,23 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 812768602}
   m_CullTransparentMesh: 1
+--- !u!1 &813361277 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 668966217125840597, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
+  m_PrefabInstance: {fileID: 7097498031880710830}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &813361282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 813361277}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca9eecf84ba7e0f43b56709f8bd43469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &822043553
 GameObject:
   m_ObjectHideFlags: 0
@@ -14556,6 +14573,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 1361818827}
+    - target: {fileID: 7064109826090931087, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
+      propertyPath: globalVolume
+      value: 
+      objectReference: {fileID: 320713154}
     - target: {fileID: 8315081862928520190, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 10
@@ -14599,7 +14620,10 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 668966217125840597, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 813361282}
   m_SourcePrefab: {fileID: 100100000, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
