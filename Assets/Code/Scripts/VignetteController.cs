@@ -15,7 +15,6 @@ public class VignetteController : MonoBehaviour
 
         if (globalVolume != null && globalVolume.profile.TryGet<Vignette>(out vignette))
         {
-            Debug.Log("Vignette trovata nel Volume Profile!");
             vignette.active = true;
         }
         else
@@ -71,7 +70,7 @@ public class VignetteController : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
 
-            // Interpoliamo il colore e l'intensità della vignette
+            // Interpoliamo il colore e l'intensitï¿½ della vignette
             vignette.color.value = Color.Lerp(fromColor, toColor, elapsedTime / transitionTime);
             vignette.intensity.value = Mathf.Lerp(fromIntensity, toIntensity, elapsedTime / transitionTime);
 
