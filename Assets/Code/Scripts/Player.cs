@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
-    private VignetteController vignetteController;
+    private VolumeController vignetteController;
     public int maxHealth = 5;
     public int currentHealth;
 
@@ -18,7 +18,7 @@ public class Player : MonoBehaviour
         healthBar.SetMaxHealth(maxHealth);
 
         // Ottieni il riferimento al VignetteController
-        vignetteController = GetComponent<VignetteController>();
+        vignetteController = GetComponent<VolumeController>();
 
         // Passa il Global Volume al VignetteController
         if (vignetteController != null && globalVolume != null)

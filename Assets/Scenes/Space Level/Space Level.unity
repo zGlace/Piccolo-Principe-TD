@@ -2185,6 +2185,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4757146652944792194, guid: cb9abc40f65c6d047b1cc36172383e79, type: 3}
   m_PrefabInstance: {fileID: 258661343}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &274541988 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2595775437716936000, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
+  m_PrefabInstance: {fileID: 7097498031880710830}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca9eecf84ba7e0f43b56709f8bd43469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &282202368
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -19031,6 +19042,10 @@ MonoBehaviour:
   timeBetweenMiniWaves: 10
   enemiesPerSecond: 1
   enemiesPerSecondCap: 5
+  volumeController: {fileID: 274541988}
+  bloomIntensityDuringBoss: 45
+  chromaticAberrationIntensityDuringBoss: 0.1
+  vignetteColorDuringBoss: {r: 0.98607045, g: 0.23113209, b: 1, a: 1}
 --- !u!1001 &1058990400
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -27911,28 +27926,8 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 668966217125840597, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 7097498031880710832}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
---- !u!1 &7097498031880710831 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 668966217125840597, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
-  m_PrefabInstance: {fileID: 7097498031880710830}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &7097498031880710832
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7097498031880710831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ca9eecf84ba7e0f43b56709f8bd43469, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
