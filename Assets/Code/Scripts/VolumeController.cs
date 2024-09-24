@@ -3,7 +3,7 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using System.Collections;
 
-public class VignetteController : MonoBehaviour
+public class VolumeController : MonoBehaviour
 {
     private Vignette vignette;
     private Bloom bloom;
