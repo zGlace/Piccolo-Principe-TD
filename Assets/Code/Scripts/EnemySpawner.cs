@@ -34,6 +34,7 @@ public class EnemySpawner : MonoBehaviour
     private float eps; // Enemies per second
     private bool isSpawning = false;
     private VictoryMenu victory;
+    private LevelSelect levelSelect;
 
     private void Awake()
     {
@@ -43,6 +44,7 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         victory = FindObjectOfType<VictoryMenu>(); // Automatically find the VictoryMenu object (make sure there's only one in the scene)
+        levelSelect = FindObjectOfType<LevelSelect>();
         UpdateWaveUI();
         StartCoroutine(StartWave());
     }
@@ -87,6 +89,7 @@ public class EnemySpawner : MonoBehaviour
             victory.victoryUI.SetActive(true);
             winTextAnimator.Play(victoryAnimation, 0, 0.0f);
             victory.GameWon();
+            levelSelect.CompleteLevel();
         }
         else
         {

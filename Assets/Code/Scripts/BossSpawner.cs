@@ -27,6 +27,8 @@ public class BossSpawner : MonoBehaviour
 
     private void Awake()
     {
+        victory = FindObjectOfType<VictoryMenu>();
+        
         LevelManager.onEnemyDestroy.AddListener(OnEnemyDestroyed);
         LevelManager.onBossDefeated.AddListener(victory.GameWon);
         StartCoroutine(StartBoss());
