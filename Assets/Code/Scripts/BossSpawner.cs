@@ -16,12 +16,6 @@ public class BossSpawner : MonoBehaviour
     [SerializeField] private float enemiesPerSecond = 1f;
     [SerializeField] private float enemiesPerSecondCap = 5f;
 
-    [Header("Post-Processing Settings")]
-    [SerializeField] private VolumeController volumeController; // Reference to VolumeController
-    [SerializeField] private float bloomIntensityDuringBoss = 45f;
-    [SerializeField] private float chromaticAberrationIntensityDuringBoss = 0.1f;
-    [SerializeField] private Color vignetteColorDuringBoss = Color.magenta; // Optional if you want to change Vignette
-
     private bool bossSpawned = false;
     private bool levelEnded = false;
     private bool isSpawningEnemies = false;
@@ -29,14 +23,15 @@ public class BossSpawner : MonoBehaviour
     private int enemiesLeftToSpawn = 0;
     private int enemiesAlive = 0;
     private float eps;
+    private VictoryMenu victory;
 
     private void Awake()
     {
         LevelManager.onEnemyDestroy.AddListener(OnEnemyDestroyed);
-        LevelManager.onBossDefeated.AddListener(GameWon);
+        LevelManager.onBossDefeated.AddListener(victory.GameWon);
         StartCoroutine(StartBoss());
     }
-
+    
     private IEnumerator StartBoss()
     {
         yield return new WaitForSeconds(5f); // Wait 5 seconds at the start of the game before commencing the waves
@@ -47,7 +42,7 @@ public class BossSpawner : MonoBehaviour
     {
         if (bossInstance == null && bossSpawned && !levelEnded)
         {
-            GameWon();
+            victory.GameWon();
         }
 
         // If spawning enemies, handle timing and enemy spawning logic
@@ -72,14 +67,6 @@ public class BossSpawner : MonoBehaviour
         bossSpawned = true;
         enemiesAlive++; // Increment enemiesAlive to account for the boss
         Debug.Log("Boss Spawned");
-
-        // Modifica gli effetti post-processo quando il boss spawna
-        if (volumeController != null)
-        {
-            volumeController.ModifyBloom(bloomIntensityDuringBoss, 1f, Mathf.Infinity, 1f); // Incrementa il bloom
-            volumeController.ModifyChromaticAberration(chromaticAberrationIntensityDuringBoss, 1f, Mathf.Infinity, 1f); // Incrementa l'aberration
-            volumeController.ModifyVignette(vignetteColorDuringBoss, 0.3f, 1f, Mathf.Infinity, 1f); // Cambia il colore della vignette (opzionale)
-        }
 
         // Start the periodic mini-waves after boss spawns
         StartCoroutine(SpawnMiniWaves());
@@ -125,7 +112,7 @@ public class BossSpawner : MonoBehaviour
     private void OnDestroy()
     {
         LevelManager.onEnemyDestroy.RemoveListener(OnEnemyDestroyed);
-        LevelManager.onBossDefeated.RemoveListener(GameWon);
+        LevelManager.onBossDefeated.RemoveListener(victory.GameWon);
     }
 
     public void OnBossDefeated()
@@ -133,29 +120,19 @@ public class BossSpawner : MonoBehaviour
         // Call this method when the boss is defeated
         if (bossInstance != null)
         {
-            // Ripristina gli effetti post-processo ai valori originali
-            if (volumeController != null)
-            {
-                volumeController.ModifyBloom(0f, 1f, 1f, 1f); // Ripristina il bloom
-                volumeController.ModifyChromaticAberration(0f, 1f, 1f, 1f); // Ripristina l'aberration
-                volumeController.ModifyVignette(Color.black, 0f, 1f, 1f, 1f); // Ripristina la vignette (opzionale)
-            }
-
             Destroy(bossInstance);
-            GameWon();
-
+            victory.GameWon();
         }
     }
-
+    /*
     private void GameWon()
     {
         if (levelEnded) return;  // Prevent multiple calls
         levelEnded = true; // Set the flag so it won't be called again
-
+        
         Debug.Log("Level Complete! The boss is defeated.");
         StopAllCoroutines(); // Stop spawning mini-waves
         isSpawningEnemies = false;  // Stop spawning enemies
-
-
     }
+    */
 }
