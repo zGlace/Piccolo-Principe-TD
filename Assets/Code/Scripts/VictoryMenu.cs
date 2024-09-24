@@ -5,9 +5,21 @@ using UnityEngine.SceneManagement;
 
 public class VictoryMenu : MonoBehaviour
 {
-    public void NewLevel ()
+    [Header("References")]
+    [SerializeField] public GameObject victoryUI;
+
+    public static bool GameFinished = false;
+    
+    public void NewLevel()
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
-    
+
+    public void GameWon()
+    {
+        GameFinished = true;
+        PauseMenu.GameIsPaused = true;
+        StopAllCoroutines();
+        Debug.Log("Congratulations! You've completed all the waves!");
+    }
 }

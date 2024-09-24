@@ -23,11 +23,12 @@ public class BossSpawner : MonoBehaviour
     private int enemiesLeftToSpawn = 0;
     private int enemiesAlive = 0;
     private float eps;
+    private VictoryMenu victory;
 
     private void Awake()
     {
         LevelManager.onEnemyDestroy.AddListener(OnEnemyDestroyed);
-        LevelManager.onBossDefeated.AddListener(GameWon);
+        LevelManager.onBossDefeated.AddListener(victory.GameWon);
         StartCoroutine(StartBoss());
     }
     
@@ -41,7 +42,7 @@ public class BossSpawner : MonoBehaviour
     {
         if (bossInstance == null && bossSpawned && !levelEnded)
         {
-            GameWon();
+            victory.GameWon();
         }
 
         // If spawning enemies, handle timing and enemy spawning logic
@@ -111,7 +112,7 @@ public class BossSpawner : MonoBehaviour
     private void OnDestroy()
     {
         LevelManager.onEnemyDestroy.RemoveListener(OnEnemyDestroyed);
-        LevelManager.onBossDefeated.RemoveListener(GameWon);
+        LevelManager.onBossDefeated.RemoveListener(victory.GameWon);
     }
 
     public void OnBossDefeated()
@@ -120,10 +121,10 @@ public class BossSpawner : MonoBehaviour
         if (bossInstance != null)
         {
             Destroy(bossInstance);
-            GameWon();
+            victory.GameWon();
         }
     }
-
+    /*
     private void GameWon()
     {
         if (levelEnded) return;  // Prevent multiple calls
@@ -133,4 +134,5 @@ public class BossSpawner : MonoBehaviour
         StopAllCoroutines(); // Stop spawning mini-waves
         isSpawningEnemies = false;  // Stop spawning enemies
     }
+    */
 }

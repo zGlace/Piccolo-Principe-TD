@@ -17,6 +17,7 @@ public class EnemyMovement : MonoBehaviour
     private float pathTargetRange = 0.1f;
     private float baseSpeed;
     public Player player;
+    private LoseMenu lose;
     // private Animator animator;
     // private SpriteRenderer spriteRenderer;
 
@@ -54,7 +55,7 @@ public class EnemyMovement : MonoBehaviour
         if (CompareTag("BossEnemy"))
         {
             Debug.Log("The boss has reached the end. Game Over!");
-            player.QuitGame();
+            lose.GameLost();
         }
         else
         {

@@ -47,6 +47,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b7ca94d94654fa46a185263673b5ff8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  loseTextAnimator: {fileID: 0}
+  loseAnimation: GameOver
   maxHealth: 5
   currentHealth: 0
   healthBar: {fileID: 0}

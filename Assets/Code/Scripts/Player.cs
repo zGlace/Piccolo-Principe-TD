@@ -3,24 +3,29 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [Header("References")]
+    [SerializeField] public HealthBar healthBar;
+    [SerializeField] public Volume globalVolume;
+
+    [Header("Animation References")]
+    [SerializeField] private Animator loseTextAnimator;
+    [SerializeField] private string loseAnimation;
+
+    [Header("Attributes")]
+    [SerializeField] public int maxHealth = 5;
+    [SerializeField] public int currentHealth;
+
     private VignetteController vignetteController;
-    public int maxHealth = 5;
-    public int currentHealth;
-
-    public HealthBar healthBar;
-    private bool isGameOver = false;
-
-    public Volume globalVolume;  // Assicurati di assegnare questo nell'Inspector
-
+    private LoseMenu lose;
+    
     public void Start()
     {
+        lose = FindObjectOfType<LoseMenu>();
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
 
-        // Ottieni il riferimento al VignetteController
         vignetteController = GetComponent<VignetteController>();
 
-        // Passa il Global Volume al VignetteController
         if (vignetteController != null && globalVolume != null)
         {
             vignetteController.SetGlobalVolume(globalVolume);
@@ -36,7 +41,7 @@ public class Player : MonoBehaviour
 
     public void OnEnemyReachedEnd()
     {
-        if (!isGameOver) // Only take damage if the game is not over
+        if (!LoseMenu.GameOver) // Only take damage if the game is not over
         {
             TakeDamage(1);
         }
@@ -46,7 +51,6 @@ public class Player : MonoBehaviour
     {
         if (vignetteController != null)
         {
-            Debug.Log("Colpito!");
             vignetteController.ModifyVignette(Color.red, 0.3f, 0.15f, 0.6f, 0.7f);
         }
 
@@ -56,20 +60,15 @@ public class Player : MonoBehaviour
         Debug.Log($"Player takes {damage} damage. Current health: {currentHealth}");
         healthBar.SetHealth(currentHealth);
 
-        if (currentHealth == 0 && !isGameOver)
+        if (currentHealth == 0 && !LoseMenu.GameOver)
         {
-            isGameOver = true;
-            Debug.Log("Game Over!");
-            QuitGame();
-        }
-    }
+            lose.gameOverUI.SetActive(true);
 
-    public void QuitGame()
-    {
-        #if UNITY_EDITOR
-            UnityEditor.EditorApplication.isPlaying = false; // Stop play mode in editor
-        #else
-            Application.Quit(); // Quit application
-        #endif
+            loseTextAnimator.updateMode = AnimatorUpdateMode.UnscaledTime; // Set Animator to Unscaled Time so animation plays even when time is frozen
+            loseTextAnimator.Play(loseAnimation, 0, 0.0f);
+
+            lose.GameLost();
+            Time.timeScale = 0f;
+        }
     }
 }

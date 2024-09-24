@@ -27,15 +27,11 @@ public class VignetteController : MonoBehaviour
     {
         if (vignette != null)
         {
-            Debug.Log("Modificando la vignette...");
-
-            // Annulla la transizione precedente, se esiste
             if (currentTransitionCoroutine != null)
             {
                 StopCoroutine(currentTransitionCoroutine);
             }
 
-            // Avvia una nuova coroutine
             currentTransitionCoroutine = StartCoroutine(ApplyVignetteEffect(newColor, newIntensity, transitionInTime, duration, transitionOutTime));
         }
         else
@@ -70,7 +66,6 @@ public class VignetteController : MonoBehaviour
         {
             elapsedTime += Time.deltaTime;
 
-            // Interpoliamo il colore e l'intensit� della vignette
             vignette.color.value = Color.Lerp(fromColor, toColor, elapsedTime / transitionTime);
             vignette.intensity.value = Mathf.Lerp(fromIntensity, toIntensity, elapsedTime / transitionTime);
 
