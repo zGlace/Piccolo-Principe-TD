@@ -5,10 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
-    public static bool GameIsPaused = false;
-    public GameObject pauseMenuUI;
+    [Header("UI References")]
+    public GameObject pauseMenuUI; // The entire pause menu
+    public GameObject pauseSelectionUI; // The default screen with the resume/option buttons
+    public GameObject optionsMenuUI; // The options menu
 
-    // Update is called once per frame
+    public static bool GameIsPaused = false;
+
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.Escape))
@@ -22,6 +25,14 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
+    public void PauseGameFromButton()
+    {
+        if (!GameIsPaused)
+        {
+            Pause();
+        }
+    }
+
     public void Resume()
     {
         pauseMenuUI.SetActive(false);
@@ -29,21 +40,38 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
     }
 
-    void Pause()
+    public void Pause()
     {
+        ResetToPauseSelection(); // Make sure the main pause screen is shown first
+
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
     }
 
-    public void QuitGame()
+    // Reset the UI to always show the "Pause Selection" screen when paused
+    private void ResetToPauseSelection()
     {
-        Debug.Log("QUIT!");
-        Application.Quit();
+        pauseSelectionUI.SetActive(true); // Show the main pause screen
+        optionsMenuUI.SetActive(false); // Hide the options menu
+    }
+
+    public void OpenOptionsMenu()
+    {
+        pauseSelectionUI.SetActive(false); // Hide the main pause screen
+        optionsMenuUI.SetActive(true); // Show the options menu
+    }
+
+    public void CloseOptionsMenu()
+    {
+        optionsMenuUI.SetActive(false); // Hide the options menu
+        pauseSelectionUI.SetActive(true); // Show the main pause screen
     }
 
     public void LoadMenu()
     {
         SceneManager.LoadScene("Menu");
+        Time.timeScale = 1f;
+        PauseMenu.GameIsPaused = false;
     }
 }

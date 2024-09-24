@@ -15,7 +15,9 @@ public class EnemySpawner : MonoBehaviour
     [Header("Animation References")]
     [SerializeField] private TextMeshProUGUI waveText;  // To display wave progress (current wave / max wave)
     [SerializeField] private Animator waveTextAnimator;
-    [SerializeField] private string wavePulseAnim;
+    [SerializeField] private string wavePulseAnimation;
+    [SerializeField] private Animator winTextAnimator;
+    [SerializeField] private string victoryAnimation;
 
     [Header("Attributes")]
     [SerializeField] private List<Wave> waves = new List<Wave>();  // List of wave objects, each containing enemies for that wave
@@ -31,6 +33,7 @@ public class EnemySpawner : MonoBehaviour
     private int enemiesLeftToSpawn;
     private float eps; // Enemies per second
     private bool isSpawning = false;
+    private VictoryMenu victory;
 
     private void Awake()
     {
@@ -39,6 +42,7 @@ public class EnemySpawner : MonoBehaviour
 
     private void Start()
     {
+        victory = FindObjectOfType<VictoryMenu>(); // Automatically find the VictoryMenu object (make sure there's only one in the scene)
         UpdateWaveUI();
         StartCoroutine(StartWave());
     }
@@ -73,12 +77,16 @@ public class EnemySpawner : MonoBehaviour
 
     private void EndWave()
     {
+        if (LoseMenu.GameOver) return; // Don't progress waves if the player has lost
+
         isSpawning = false;
         timeSinceLastSpawn = 0f;
 
-        if (currentWave >= maxWave)
+        if (currentWave >= maxWave) // Stop spawning and trigger the end of the level
         {
-            GameWon();
+            victory.victoryUI.SetActive(true);
+            winTextAnimator.Play(victoryAnimation, 0, 0.0f);
+            victory.GameWon();
         }
         else
         {
@@ -86,7 +94,7 @@ public class EnemySpawner : MonoBehaviour
             UpdateWaveUI();
             if (waveTextAnimator != null)
             {
-                waveTextAnimator.Play(wavePulseAnim, 0, 0.0f);
+                waveTextAnimator.Play(wavePulseAnimation, 0, 0.0f);
             }
             StartCoroutine(StartWave());
         }
@@ -108,6 +116,18 @@ public class EnemySpawner : MonoBehaviour
         }
     }
 
+    public void ResetSpawner()
+    {
+        currentWave = 1; // Reset wave to 1
+        timeSinceLastSpawn = 0f;
+        enemiesAlive = 0;
+        enemiesLeftToSpawn = 0;
+        isSpawning = false;
+        StopAllCoroutines(); // Stop any existing wave coroutines
+
+        UpdateWaveUI();
+    }
+
     private int EnemiesPerWave()
     {
         return Mathf.RoundToInt(waves[currentWave - 1].enemiesInWave.Length);  // Depends on how many enemies are in the wave
@@ -126,14 +146,6 @@ public class EnemySpawner : MonoBehaviour
     private void OnDestroy()
     {
         LevelManager.onEnemyDestroy.RemoveListener(EnemyDestroyed);
-    }
-
-    private void GameWon()
-    {
-        // Stop spawning and trigger the end of the level
-        Debug.Log("Congratulations! You've completed all the waves!");
-
-        // TODO: Implement the logic for moving to the next level
     }
 
     private void UpdateWaveUI()

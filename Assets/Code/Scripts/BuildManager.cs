@@ -13,6 +13,7 @@ public class BuildManager : MonoBehaviour
     private int selectedTower = -1;  // -1 means no tower selected
     private GameObject towerPreview; // Tower sprite that will follow the cursor
     private BaseTurret turretPreviewScript; // Reference to the Turret component in the preview
+    private Vector3 lastPreviewPosition;
 
     private void Awake()
     {
@@ -21,6 +22,15 @@ public class BuildManager : MonoBehaviour
 
     private void Update()
     {
+        if (PauseMenu.GameIsPaused) // Store the last preview position and do not update its position while paused
+        {
+            if (towerPreview != null)
+            {
+                lastPreviewPosition = towerPreview.transform.position;
+            }
+            return;
+        }
+
         // If a tower is selected, make its preview follow the cursor
         if (selectedTower >= 0 && towerPreview != null)
         {
