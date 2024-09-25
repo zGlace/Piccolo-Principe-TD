@@ -23420,7 +23420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b6b79e6e60a602469cd7fb8dd118fde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  audioMixer: {fileID: 0}
+  audioMixer: {fileID: 24100000, guid: bbdc4795b1eaf534592cffa58e18a3bb, type: 2}
 --- !u!114 &1211502356
 MonoBehaviour:
   m_ObjectHideFlags: 0

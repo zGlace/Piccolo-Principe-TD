@@ -58,6 +58,9 @@ public class EnemyHealth : MonoBehaviour
             LevelManager.main.IncreaseCurrency(currencyWorth);
             isDestroyed = true;
 
+            // Notify the tutorial manager about enemy destruction
+            TutorialManager.main.OnEnemyDestroyed();
+
             Destroy(gameObject);
         }
     }

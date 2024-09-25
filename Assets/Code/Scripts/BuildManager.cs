@@ -65,6 +65,9 @@ public class BuildManager : MonoBehaviour
 
     public void SetSelectedTower(int _selectedTower)
     {
+        // Allow tower selection only if the tutorial is not active or is past the first two popups
+        if (TutorialManager.main.IsTutorialActive() && TutorialManager.main.CurrentPopUpIndex() < 2) return;
+
         selectedTower = _selectedTower;
 
         // Remove old tower preview if there was one

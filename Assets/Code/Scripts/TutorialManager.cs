@@ -1,72 +1,105 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TutorialManager : MonoBehaviour
 {
-    public GameObject[] popUps;
+    public static TutorialManager main;
+    
+    public GameObject[] popups;
     private int popUpIndex = 0;
     public GameObject spawner;
     public float waitTime = 10f;
 
-    private bool turretBought = false;  // Flag to check if the player has bought a turret
-    private bool turretPlaced = false;  // Flag to check if the player has placed a turret
+    private bool turretBought = false; // Flag to check if the player has bought a turret
+    private bool turretPlaced = false; // Flag to check if the player has placed a turret
+    private bool isReadyToSpawnEnemy = false; // Flag to indicate when to spawn the enemy
+    private bool tutorialActive = true; // Flag to indicate if the tutorial is active
+
+    void Awake()
+    {
+        main = this; // Set the static reference
+    }
+
+    void Start()
+    {
+        // Ensure only the first popup is active at the start
+        for (int i = 0; i < popups.Length; i++)
+        {
+            popups[i].SetActive(i == 0); // Only show the first popup
+        }
+    }
 
     void Update()
     {
         // Handle showing the correct popup
-        for (int i = 0; i < popUps.Length; i++)
+        for (int i = 0; i < popups.Length; i++)
         {
-            if (i == popUpIndex)
-            {
-                popUps[popUpIndex].SetActive(true);
-            }
-            else
-            {
-                popUps[popUpIndex].SetActive(false);
-            }
+            popups[i].SetActive(i == popUpIndex);
         }
 
         // Handle tutorial progression based on the current popup index
-        if (popUpIndex == 0)
+        switch (popUpIndex)
         {
-            if (Input.GetKeyDown(KeyCode.Space)) // Introductory text, press Space to continue
-            {
-                popUpIndex++;
-            }
-            else if (popUpIndex == 1)
-            {
-                if (Input.GetKeyDown(KeyCode.Space))
+            case 0:
+                if (Input.GetKeyDown(KeyCode.Space)) // First popup, press Space to continue
                 {
                     popUpIndex++;
                 }
-            }
-            else if (popUpIndex == 2) // Instruct player to buy a turret
-            {
+                break;
+
+            case 1:
+                if (Input.GetKeyDown(KeyCode.Space)) // Second popup, press Space to continue
+                {
+                    popUpIndex++;
+                }
+                break;
+
+            case 2: // Instruct player to buy a turret
                 if (turretBought)  // Move to the next step if the turret is bought
                 {
                     popUpIndex++;
                 }
-            }
-            else if (popUpIndex == 3) // Instruct player to place the turret
-            {
+                break;
+
+            case 3: // Instruct player to place the turret
                 if (turretPlaced)  // Move to the next step if the turret is placed
                 {
                     popUpIndex++;
                 }
-            }
-            else if (popUpIndex == 4)
-            {
+                break;
+
+            case 4: // Final instruction before spawning enemies
+                isReadyToSpawnEnemy = true; // Set the flag to indicate readiness
                 if (waitTime <= 0)
                 {
-                    spawner.SetActive(true);
+                    spawner.SetActive(true); // Activate the spawner if needed
                 }
                 else
                 {
-                    waitTime -= Time.deltaTime;
+                    waitTime -= Time.deltaTime; // Countdown wait time
                 }
-            }
+                break;
+            
+            case 5: // End tutorial
+                if (Input.GetKeyDown(KeyCode.Space))
+                {
+                    Debug.Log("Space pressed, loading Menu scene"); // Debug statement
+                    EndTutorial();
+                }
+                break;
         }
+    }
+
+    public int CurrentPopUpIndex()
+    {
+        return popUpIndex; // Return the current popup index
+    }
+
+    public bool IsReadyToSpawnEnemy()
+    {
+        return isReadyToSpawnEnemy; // Return the flag indicating readiness to spawn
     }
 
     // Method called when the player buys a turret from the shop
@@ -80,28 +113,21 @@ public class TutorialManager : MonoBehaviour
     {
         turretPlaced = true;
     }
-}
 
-public class Spawner : MonoBehaviour
-{
-    public GameObject tutorialEnemy;
-
-    public float startTimeBtwEnemy;
-    private float timeBtwEnemy;
-
-    public int numberOfEnemies;
-
-    void Update()
+    public void OnEnemyDestroyed()
     {
-        if (timeBtwEnemy <= 0 && numberOfEnemies > 0)
-        {
-            Instantiate(tutorialEnemy, LevelManager.main.startPoint.position, Quaternion.identity);
-            timeBtwEnemy = startTimeBtwEnemy;
-            numberOfEnemies++;
-        }
-        else
-        {
-            timeBtwEnemy -= Time.deltaTime;
-        }
+        // Move to the next tutorial step
+        popUpIndex++;
+    }
+
+    public bool IsTutorialActive()
+    {
+        return tutorialActive; // Return the current state of the tutorial
+    }
+
+    public void EndTutorial()
+    {
+        tutorialActive = false; // Set the tutorial state to inactive
+        SceneManager.LoadScene("Menu"); // Load the main menu scene
     }
 }
