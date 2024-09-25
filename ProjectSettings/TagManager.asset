@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - BossEnemy
+  - SpeedEnemy
+  - Enemy
+  - Healer
+  - TankEnemy
   layers:
   - Default
   - TransparentFX

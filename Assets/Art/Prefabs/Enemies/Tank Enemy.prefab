@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 2420609369114513872}
   - component: {fileID: 816882411593841364}
   - component: {fileID: 4210684763514627570}
+  - component: {fileID: 3661197769085390581}
   m_Layer: 6
   m_Name: Tank Enemy
-  m_TagString: Untagged
+  m_TagString: TankEnemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -78,8 +79,8 @@ SpriteRenderer:
   m_SortingLayerID: 1452975231
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: a86470a33a6bf42c4b3595704624658b, type: 3}
-  m_Color: {r: 0.5411765, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: -1262468286, guid: dd250af7ace49504ea3d8267b7be0921, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -183,6 +184,27 @@ MonoBehaviour:
   maxHitPoints: 6
   currencyWorth: 100
   currentHitPoints: 0
+--- !u!95 &3661197769085390581
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 615874431568051653}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3884266c9c093ac4d9d5a50920719354, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3193135181730328261
 GameObject:
   m_ObjectHideFlags: 0
