@@ -2,9 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class BossSpawner : MonoBehaviour
 {
+    [Header("Animation References")]
+    [SerializeField] private Animator winTextAnimator;
+    [SerializeField] private string victoryAnimation;
+    
     [Header("Boss Settings")]
     [SerializeField] private GameObject bossPrefab; // The boss enemy prefab
     private GameObject bossInstance; // Track the boss instance
@@ -17,7 +22,6 @@ public class BossSpawner : MonoBehaviour
     [SerializeField] private float enemiesPerSecondCap = 5f;
 
     private bool bossSpawned = false;
-    private bool levelEnded = false;
     private bool isSpawningEnemies = false;
     private float timeSinceLastSpawn = 0f;
     private int enemiesLeftToSpawn = 0;
@@ -42,9 +46,18 @@ public class BossSpawner : MonoBehaviour
 
     private void Update()
     {
-        if (bossInstance == null && bossSpawned && !levelEnded)
+        if (bossInstance == null && bossSpawned && !VictoryMenu.GameFinished)
         {
+            if (VictoryMenu.GameFinished) return;  // Prevent multiple calls
+            
+            isSpawningEnemies = false;  // Stop spawning enemies
+
+            victory.victoryUI.SetActive(true);
+            winTextAnimator.Play(victoryAnimation, 0, 0.0f);
             victory.GameWon();
+
+            PlayerPrefs.SetInt("Level" + SceneManager.GetActiveScene().buildIndex + "_Completed", 1);
+            PlayerPrefs.Save();
         }
 
         // If spawning enemies, handle timing and enemy spawning logic

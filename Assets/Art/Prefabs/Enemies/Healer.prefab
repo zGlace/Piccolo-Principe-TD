@@ -198,7 +198,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healingIndicator: {fileID: 8598422363162068539}
-  healingRadius: 3.5
+  healingRadius: 2.75
   healAmount: 0.5
   healInterval: 4
   enemyLayerMask:

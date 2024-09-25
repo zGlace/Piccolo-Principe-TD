@@ -180,7 +180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyHealthUI: {fileID: 4860926590246780445}
   healthBarSlider: {fileID: 2675218641424182217}
-  maxHitPoints: 100
+  maxHitPoints: 125
   currencyWorth: 1000
   currentHitPoints: 0
 --- !u!1 &3193135181730328261

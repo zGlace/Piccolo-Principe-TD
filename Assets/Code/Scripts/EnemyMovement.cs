@@ -54,7 +54,7 @@ public class EnemyMovement : MonoBehaviour
     {
         if (CompareTag("BossEnemy"))
         {
-            Debug.Log("The boss has reached the end. Game Over!");
+            Debug.Log("The boss has reached the end.");
             lose.GameLost();
         }
         else
