@@ -18,16 +18,16 @@ public class EnemyMovement : MonoBehaviour
     private float baseSpeed;
     public Player player;
     private LoseMenu lose;
-    // private Animator animator;
-    // private SpriteRenderer spriteRenderer;
+    private Animator animator;
+    private SpriteRenderer spriteRenderer;
 
 
     private void Start()
     {
         baseSpeed = moveSpeed;
         target = LevelManager.main.path[pathIndex];
-        // spriteRenderer = GetComponent<SpriteRenderer>();
-        // animator = GetComponent<Animator>(); 
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -86,60 +86,66 @@ public class EnemyMovement : MonoBehaviour
 
         rb.velocity = direction * moveSpeed;
 
-        /*
+        UpdateAnimation(direction);
+    }
+
+    private void UpdateAnimation(Vector2 direction)
+    {
+        // Ottieni il tag del personaggio per determinare quale animazione giocare
+        string characterTag = gameObject.tag;
+
+        // Determina quale asse è dominante (orizzontale o verticale)
         if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
+            // Movimenti a destra o a sinistra
             if (direction.x > 0)
             {
-                if (gameObject.CompareTag("BossEnemy"))
-                {
-                    animator.Play("KingWalkingRightLeft"); 
-                    spriteRenderer.flipX = false;
-                }
-                else
-                {
-                    transform.rotation = Quaternion.Euler(0, 0, 90); 
-                }
+                PlayAnimation(characterTag, "RightLeft", false); // Verso destra
             }
             else
             {
-                if (gameObject.CompareTag("BossEnemy"))
-                {
-                    animator.Play("KingWalkingRightLeft"); 
-                    spriteRenderer.flipX = true;
-                }
-                else
-                {
-                    transform.rotation = Quaternion.Euler(0, 0, -90); 
-                }
+                PlayAnimation(characterTag, "RightLeft", true); // Verso sinistra con flip
             }
         }
         else
         {
+            // Movimenti su o giù
             if (direction.y > 0)
             {
-                if (gameObject.CompareTag("BossEnemy"))
-                {
-                    animator.Play("KingWalkingNorth");
-                }
-                else
-                {
-                    transform.rotation = Quaternion.Euler(0, 0, 180);
-                }
+                PlayAnimation(characterTag, "North", false); // Verso l'alto
             }
             else
             {
-                if (gameObject.CompareTag("BossEnemy"))
-                {
-                    animator.Play("KingWalkingStraight");
-                }
-                else
-                {
-                    transform.rotation = Quaternion.Euler(0, 0, 0); 
-                }
+                PlayAnimation(characterTag, "Straight", false); // Verso il basso
             }
         }
-        */
+    }
+
+    private void PlayAnimation(string characterTag, string direction, bool flipX)
+    {
+        // Usa il tag per determinare l'animazione
+        if (characterTag == "BossEnemy")
+        {
+            animator.Play("KingWalking" + direction);
+        }
+        else if (characterTag == "SpeedEnemy")
+        {
+            animator.Play("WitchWalking" + direction);
+        }
+        else if (characterTag == "Enemy")
+        {
+            animator.Play("SnakeCrawling" + direction); 
+        }
+        else if (characterTag == "Healer")
+        {
+            animator.Play("HealerWalking" + direction);
+        }
+         else if (characterTag == "TankEnemy")
+        {
+            animator.Play("ScorpionWalking" + direction);
+        }
+        
+        spriteRenderer.flipX = flipX;
     }
 
     public void UpdateSpeed(float newSpeed)

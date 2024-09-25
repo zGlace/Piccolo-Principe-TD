@@ -27,6 +27,9 @@ public class Bullet : MonoBehaviour
         Vector2 direction = (target.position - transform.position).normalized; // Values between 0 and 1
 
         rb.velocity = direction * bulletSpeed;
+
+        float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
+        transform.rotation = Quaternion.Euler(0, 0, angle); 
     }
 
     private void OnCollisionEnter2D(Collision2D other)
