@@ -22,25 +22,21 @@ public class VolumeController : MonoBehaviour
         {
             if (globalVolume.profile.TryGet<Vignette>(out vignette))
             {
-                Debug.Log("Vignette trovata nel Volume Profile!");
                 vignette.active = true;
             }
 
             if (globalVolume.profile.TryGet<Bloom>(out bloom))
             {
-                Debug.Log("Bloom trovato nel Volume Profile!");
                 bloom.active = true;
             }
 
             if (globalVolume.profile.TryGet<ChromaticAberration>(out chromaticAberration))
             {
-                Debug.Log("Chromatic Aberration trovata nel Volume Profile!");
                 chromaticAberration.active = true;
             }
         }
     }
 
-    // Metodo per modificare la Vignette
     public void ModifyVignette(Color newColor, float newIntensity, float transitionInTime, float duration, float transitionOutTime)
     {
         if (vignette != null)
@@ -78,7 +74,6 @@ public class VolumeController : MonoBehaviour
         vignette.intensity.value = toIntensity;
     }
 
-    // Metodo per modificare il Bloom
     public void ModifyBloom(float newIntensity, float transitionInTime, float duration, float transitionOutTime)
     {
         if (bloom != null)
@@ -113,7 +108,6 @@ public class VolumeController : MonoBehaviour
         bloom.intensity.value = toIntensity;
     }
 
-    // Metodo per modificare Chromatic Aberration
     public void ModifyChromaticAberration(float newIntensity, float transitionInTime, float duration, float transitionOutTime)
     {
         if (chromaticAberration != null)

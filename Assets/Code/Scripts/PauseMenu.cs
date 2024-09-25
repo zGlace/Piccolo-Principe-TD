@@ -25,14 +25,6 @@ public class PauseMenu : MonoBehaviour
         }
     }
 
-    public void PauseGameFromButton()
-    {
-        if (!GameIsPaused)
-        {
-            Pause();
-        }
-    }
-
     public void Resume()
     {
         pauseMenuUI.SetActive(false);

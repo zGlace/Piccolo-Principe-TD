@@ -12,6 +12,8 @@ public class VictoryMenu : MonoBehaviour
     
     public void NewLevel()
     {
+        GameFinished = false;
+        PauseMenu.GameIsPaused = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 

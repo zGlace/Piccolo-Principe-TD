@@ -15,7 +15,7 @@ public class Player : MonoBehaviour
     [SerializeField] public int maxHealth = 5;
     [SerializeField] public int currentHealth;
 
-    private VignetteController vignetteController;
+    private VolumeController volumeController;
     private LoseMenu lose;
     
     public void Start()
@@ -24,11 +24,11 @@ public class Player : MonoBehaviour
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
 
-        vignetteController = GetComponent<VignetteController>();
+        volumeController = GetComponent<VolumeController>();
 
-        if (vignetteController != null && globalVolume != null)
+        if (volumeController != null && globalVolume != null)
         {
-            vignetteController.SetGlobalVolume(globalVolume);
+            volumeController.SetGlobalVolume(globalVolume);
         }
 
         LevelManager.onEnemyReachedEnd.AddListener(OnEnemyReachedEnd);
@@ -49,9 +49,9 @@ public class Player : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
-        if (vignetteController != null)
+        if (volumeController != null)
         {
-            vignetteController.ModifyVignette(Color.red, 0.3f, 0.15f, 0.6f, 0.7f);
+            volumeController.ModifyVignette(Color.red, 0.3f, 0.15f, 0.6f, 0.7f);
         }
 
         currentHealth -= damage;

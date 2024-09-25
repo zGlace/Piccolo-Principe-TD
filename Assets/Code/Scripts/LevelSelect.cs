@@ -15,75 +15,49 @@ public class LevelSelect : MonoBehaviour
     public Image unlockedImage;
     public Image completedImage;
 
-    private string levelKey; // Unique key for PlayerPrefs for this level
+    [SerializeField] private int levelNumber; // The number of this level (e.g., Level 1, Level 2)
 
     private void Start()
     {
-        // Get the level index based on the name or custom logic
-        int levelIndex = int.Parse(gameObject.name);
-
-        // Construct a unique key for this level (e.g., "Level1", "Level2", etc.)
-        levelKey = "Level" + levelIndex;
-
         // Load level progress from PlayerPrefs
-        LoadLevelStatus(levelIndex);
-        
-        // Update UI elements based on the level's status
+        LoadLevelStatus(levelNumber);
+    }
+
+    private void Update()
+    {
         UpdateLevelUI();
     }
 
     private void UpdateLevelUI()
     {
-        if (!unlocked)
-        {
-            lockedImage.gameObject.SetActive(true);
-            unlockedImage.gameObject.SetActive(false);
-            completedImage.gameObject.SetActive(false);
-        }
-        else if (completed)
-        {
-            lockedImage.gameObject.SetActive(false);
-            unlockedImage.gameObject.SetActive(false);
-            completedImage.gameObject.SetActive(true);
-        }
-        else
-        {
-            lockedImage.gameObject.SetActive(false);
-            unlockedImage.gameObject.SetActive(true);
-            completedImage.gameObject.SetActive(false);
-        }
+        lockedImage.gameObject.SetActive(!unlocked);
+        unlockedImage.gameObject.SetActive(unlocked && !completed);
+        completedImage.gameObject.SetActive(completed);
     }
 
-    // Load the level's status from PlayerPrefs
     private void LoadLevelStatus(int levelIndex)
     {
-        // Check if the level is completed or unlocked
-        completed = PlayerPrefs.GetInt(levelKey + "_completed", 0) == 1;
-        unlocked = PlayerPrefs.GetInt(levelKey + "_unlocked", 0) == 1;
-
-        // By default, level 1 is unlocked at the start
-        if (levelIndex == 1)
+        // Check if the previous level is completed (for unlocking purposes)
+        if (levelNumber == 1 || PlayerPrefs.GetInt("Level" + (levelNumber - 1) + "_Completed", 0) == 1)
         {
             unlocked = true;
         }
         else
         {
-            // Unlock the level if the previous one is completed
-            string previousLevelKey = "Level" + (levelIndex - 1);
-            if (PlayerPrefs.GetInt(previousLevelKey + "_completed", 0) == 1)
-            {
-                unlocked = true;
-                PlayerPrefs.SetInt(levelKey + "_unlocked", 1); // Save unlocked status
-            }
+            unlocked = false;
         }
+
+        // Check if this level is completed
+        completed = PlayerPrefs.GetInt("Level" + levelNumber + "_Completed", 0) == 1;
     }
 
     // Called when a level is completed
     public void CompleteLevel()
     {
+        PlayerPrefs.SetInt("Level" + levelNumber + "_Completed", 1);
+        PlayerPrefs.Save();
         completed = true;
-        PlayerPrefs.SetInt(levelKey + "_completed", 1); // Mark level as completed
-        UpdateLevelUI(); // Update the UI to show completed state
+        UpdateLevelUI();
     }
 
     public void PressSelection(string _LevelName)
@@ -91,6 +65,31 @@ public class LevelSelect : MonoBehaviour
         if (unlocked)
         {
             SceneManager.LoadScene(_LevelName); // Only load the level if it's unlocked
+        }
+    }
+
+    public void ClearPlayerPrefs()
+    {
+        // Clear all PlayerPrefs
+        PlayerPrefs.DeleteAll();
+        PlayerPrefs.Save(); // Ensure changes are saved
+
+        // Reset level states
+        unlocked = false;
+        completed = false;
+
+        // Refresh all levels to ensure UI is accurate
+        RefreshAllLevels();
+    }
+
+    private void RefreshAllLevels()
+    {
+        // Assuming you have a way to access all level objects
+        LevelSelect[] levels = FindObjectsOfType<LevelSelect>();
+        foreach (var level in levels)
+        {
+            level.LoadLevelStatus(level.levelNumber); // Reload each level status
+            level.UpdateLevelUI(); // Update the UI for each level
         }
     }
 }

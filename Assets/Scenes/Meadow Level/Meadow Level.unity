@@ -6712,7 +6712,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1004321904}
         m_TargetAssemblyTypeName: PauseMenu, Assembly-CSharp
-        m_MethodName: PauseGameFromButton
+        m_MethodName: Pause
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11156,17 +11156,11 @@ MonoBehaviour:
     - {fileID: 615874431568051653, guid: 9d80637259489ec4ca3f79f4a5a2b54e, type: 3}
   - enemiesInWave:
     - {fileID: 615874431568051653, guid: 9d80637259489ec4ca3f79f4a5a2b54e, type: 3}
-  - enemiesInWave:
-    - {fileID: 615874431568051653, guid: 9d80637259489ec4ca3f79f4a5a2b54e, type: 3}
-  - enemiesInWave:
-    - {fileID: 615874431568051653, guid: 9d80637259489ec4ca3f79f4a5a2b54e, type: 3}
-  - enemiesInWave:
-    - {fileID: 615874431568051653, guid: 9d80637259489ec4ca3f79f4a5a2b54e, type: 3}
   enemiesPerSecond: 0.5
   timeBetweenWaves: 5
   difficultyScalingFactor: 0.5
   enemiesPerSecondCap: 15
-  maxWave: 5
+  maxWave: 2
 --- !u!114 &1056260383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18624,6 +18618,6 @@ SceneRoots:
   - {fileID: 1676222729}
   - {fileID: 980863342}
   - {fileID: 1004321908}
-  - {fileID: 2130977129}
   - {fileID: 797523827}
   - {fileID: 1140695478}
+  - {fileID: 2130977129}

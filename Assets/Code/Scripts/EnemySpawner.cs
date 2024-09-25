@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class EnemySpawner : MonoBehaviour
 {
@@ -34,7 +35,6 @@ public class EnemySpawner : MonoBehaviour
     private float eps; // Enemies per second
     private bool isSpawning = false;
     private VictoryMenu victory;
-    private LevelSelect levelSelect;
 
     private void Awake()
     {
@@ -44,7 +44,6 @@ public class EnemySpawner : MonoBehaviour
     private void Start()
     {
         victory = FindObjectOfType<VictoryMenu>(); // Automatically find the VictoryMenu object (make sure there's only one in the scene)
-        levelSelect = FindObjectOfType<LevelSelect>();
         UpdateWaveUI();
         StartCoroutine(StartWave());
     }
@@ -89,7 +88,9 @@ public class EnemySpawner : MonoBehaviour
             victory.victoryUI.SetActive(true);
             winTextAnimator.Play(victoryAnimation, 0, 0.0f);
             victory.GameWon();
-            levelSelect.CompleteLevel();
+            
+            PlayerPrefs.SetInt("Level" + SceneManager.GetActiveScene().buildIndex + "_Completed", 1);
+            PlayerPrefs.Save();
         }
         else
         {
@@ -113,9 +114,26 @@ public class EnemySpawner : MonoBehaviour
         if (currentWaveEnemies.Length > 0)
         {
             int index = Random.Range(0, currentWaveEnemies.Length);  // Randomly pick from that wave's enemies
-            GameObject prefabToSpawn = currentWaveEnemies[index];
-            Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity);
-            Debug.Log($"{prefabToSpawn.name} Spawned");
+            GameObject prefabToSpawn = currentWaveEnemies[index];  // Declare prefabToSpawn here
+            
+            if (prefabToSpawn != null)  // Check if prefab is not null
+            {
+                // Ensure LevelManager and startPoint exist
+                if (LevelManager.main != null && LevelManager.main.startPoint != null)
+                {
+                    // Instantiate the enemy at the start point position
+                    Instantiate(prefabToSpawn, LevelManager.main.startPoint.position, Quaternion.identity);
+                    Debug.Log($"{prefabToSpawn.name} Spawned");
+                }
+                else
+                {
+                    Debug.LogWarning("LevelManager or startPoint is missing.");
+                }
+            }
+            else
+            {
+                Debug.LogWarning("Attempted to spawn a null prefab.");
+            }
         }
     }
 
