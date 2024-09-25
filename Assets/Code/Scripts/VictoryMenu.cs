@@ -22,6 +22,6 @@ public class VictoryMenu : MonoBehaviour
         GameFinished = true;
         PauseMenu.GameIsPaused = true;
         StopAllCoroutines();
-        Debug.Log("Congratulations! You've completed all the waves!");
+        Debug.Log("Congratulations! You've completed all the waves.");
     }
 }
