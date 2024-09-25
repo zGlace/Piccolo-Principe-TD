@@ -17,8 +17,14 @@ public class EnemyHealer : MonoBehaviour
 
     private void Start()
     {
-        // Visual representation of healing range
-        healingIndicator.transform.localScale = new Vector3(healingRadius * 2, healingRadius * 2, 1);
+        // Get the size of the sprite in world units
+        float spriteRadius = healingIndicator.bounds.extents.x; // Assuming the sprite is circular or uniform
+
+        // Calculate the scale factor needed to match the desired healing radius
+        float scaleFactor = (healingRadius * 2) / (spriteRadius * 2); // We multiply by 2 to get the diameter
+        
+        // Apply the scale factor
+        healingIndicator.transform.localScale = new Vector3(scaleFactor, scaleFactor, 1);
 
         // Start the healing coroutine
         StartCoroutine(HealNearbyEnemies());

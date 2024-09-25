@@ -23,6 +23,7 @@ public class BossSpawner : MonoBehaviour
 
     private bool bossSpawned = false;
     private bool isSpawningEnemies = false;
+    private bool bossReachedEnd = false;
     private float timeSinceLastSpawn = 0f;
     private int enemiesLeftToSpawn = 0;
     private int enemiesAlive = 0;
@@ -46,14 +47,16 @@ public class BossSpawner : MonoBehaviour
 
     private void Update()
     {
-        if (bossInstance == null && bossSpawned && !VictoryMenu.GameFinished)
+        if (bossInstance == null && bossSpawned && !VictoryMenu.GameFinished && !bossReachedEnd)
         {
             if (VictoryMenu.GameFinished) return;  // Prevent multiple calls
             
             isSpawningEnemies = false;  // Stop spawning enemies
 
             victory.victoryUI.SetActive(true);
+            winTextAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
             winTextAnimator.Play(victoryAnimation, 0, 0.0f);
+            Time.timeScale = 0f;
             victory.GameWon();
 
             PlayerPrefs.SetInt("Level" + SceneManager.GetActiveScene().buildIndex + "_Completed", 1);
@@ -128,6 +131,11 @@ public class BossSpawner : MonoBehaviour
     {
         LevelManager.onEnemyDestroy.RemoveListener(OnEnemyDestroyed);
         LevelManager.onBossDefeated.RemoveListener(victory.GameWon);
+    }
+
+    public void BossReachedEnd()
+    {
+        bossReachedEnd = true; // Set this flag to indicate that the boss reached the end
     }
 
     public void OnBossDefeated()

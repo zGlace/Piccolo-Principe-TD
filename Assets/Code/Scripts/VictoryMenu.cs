@@ -12,6 +12,7 @@ public class VictoryMenu : MonoBehaviour
     
     public void NewLevel()
     {
+        Time.timeScale = 1f;
         GameFinished = false;
         PauseMenu.GameIsPaused = false;
         
@@ -28,6 +29,7 @@ public class VictoryMenu : MonoBehaviour
     // Determine if the current level is the last one in the build index
     private bool IsLastLevel()
     {
+        Time.timeScale = 1f;
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
         return currentSceneIndex == SceneManager.sceneCountInBuildSettings - 1;
     }

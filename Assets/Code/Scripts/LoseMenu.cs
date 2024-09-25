@@ -8,6 +8,10 @@ public class LoseMenu : MonoBehaviour
     [Header("References")]
     [SerializeField] public GameObject gameOverUI;
 
+    [Header("Animation References")]
+    [SerializeField] private Animator loseTextAnimator;
+    [SerializeField] private string loseAnimation;
+
     public static bool GameOver = false;
 
     public void Back()
@@ -37,6 +41,10 @@ public class LoseMenu : MonoBehaviour
     {
         GameOver = true;
         PauseMenu.GameIsPaused = true;
+        gameOverUI.SetActive(true);
+        loseTextAnimator.updateMode = AnimatorUpdateMode.UnscaledTime; // Set Animator to Unscaled Time so animation plays even when time is frozen
+        loseTextAnimator.Play(loseAnimation, 0, 0.0f);
+        Time.timeScale = 0f;
         Debug.Log("Game Over!");
     }
 }

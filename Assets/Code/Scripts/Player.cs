@@ -7,10 +7,6 @@ public class Player : MonoBehaviour
     [SerializeField] public HealthBar healthBar;
     [SerializeField] public Volume globalVolume;
 
-    [Header("Animation References")]
-    [SerializeField] private Animator loseTextAnimator;
-    [SerializeField] private string loseAnimation;
-
     [Header("Attributes")]
     [SerializeField] public int maxHealth = 5;
     [SerializeField] public int currentHealth;
@@ -62,13 +58,7 @@ public class Player : MonoBehaviour
 
         if (currentHealth == 0 && !LoseMenu.GameOver)
         {
-            lose.gameOverUI.SetActive(true);
-
-            loseTextAnimator.updateMode = AnimatorUpdateMode.UnscaledTime; // Set Animator to Unscaled Time so animation plays even when time is frozen
-            loseTextAnimator.Play(loseAnimation, 0, 0.0f);
-
             lose.GameLost();
-            Time.timeScale = 0f;
         }
     }
 }
