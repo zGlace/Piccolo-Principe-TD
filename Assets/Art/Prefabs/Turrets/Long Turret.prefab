@@ -640,8 +640,8 @@ SpriteRenderer:
   m_SortingLayerID: 1452975231
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 2747690628134850419, guid: b670ab75dde984907b8570040daa08c5, type: 3}
-  m_Color: {r: 0.33333334, g: 0.13725491, b: 0.5921569, a: 1}
+  m_Sprite: {fileID: 2107829663, guid: d9a9d82bfd752a14899fc9aa0c5a7adb, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -674,7 +674,7 @@ MonoBehaviour:
   targetingRange: 5.5
   baseUpgradeCost: 700
   turretRotationPoint: {fileID: 1067242151058313366}
-  bulletPrefab: {fileID: 6175427519145779100, guid: d33d15ddb6433b741af03c287b29ca23, type: 3}
+  bulletPrefab: {fileID: 6175427519145779100, guid: 7d1440897169f8c418ff3fbef4309ee9, type: 3}
   firingPoint: {fileID: 930304589198133209}
   rotationSpeed: 175
   bps: 0.9

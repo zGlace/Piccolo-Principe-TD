@@ -6,12 +6,11 @@ using UnityEngine.Rendering;
 public class Bullet : MonoBehaviour
 {
     [Header("References")]
-    [SerializeField] private Rigidbody2D rb; // Applying velocity to the bullet
+    [SerializeField] private Rigidbody2D rb; 
     
     [Header("Attributes")]
     [SerializeField] private float bulletSpeed = 5f;
     [SerializeField] private float bulletDamage = 1;
-
 
     private Transform target;
 
@@ -24,8 +23,10 @@ public class Bullet : MonoBehaviour
     {
         if (!target) return;
 
-        Vector2 direction = (target.position - transform.position).normalized; // Values between 0 and 1
+        
+        Vector2 direction = (target.position - transform.position).normalized; 
 
+        
         rb.velocity = direction * bulletSpeed;
 
         float angle = Mathf.Atan2(direction.y, direction.x) * Mathf.Rad2Deg;
@@ -34,9 +35,10 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
+        
         other.gameObject.GetComponent<EnemyHealth>().EnemyTakeDamage(bulletDamage);
         Destroy(gameObject);
-}
+    }
 
     private void OnBecameInvisible()
     {

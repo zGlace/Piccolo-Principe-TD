@@ -28,6 +28,8 @@ public class EnemyMovement : MonoBehaviour
         target = LevelManager.main.path[pathIndex];
         spriteRenderer = GetComponent<SpriteRenderer>();
         animator = GetComponent<Animator>();
+        spriteRenderer = GetComponent<SpriteRenderer>();
+        animator = GetComponent<Animator>();
     }
 
     private void Update()
@@ -86,6 +88,7 @@ public class EnemyMovement : MonoBehaviour
 
         rb.velocity = direction * moveSpeed;
 
+        // Determina quale asse è dominante (orizzontale o verticale)
         UpdateAnimation(direction);
     }
 
@@ -98,24 +101,59 @@ public class EnemyMovement : MonoBehaviour
         if (Mathf.Abs(direction.x) > Mathf.Abs(direction.y))
         {
             // Movimenti a destra o a sinistra
+            // Movimenti a destra o a sinistra
             if (direction.x > 0)
             {
+                PlayAnimation(characterTag, "RightLeft", false); // Verso destra
                 PlayAnimation(characterTag, "RightLeft", false); // Verso destra
             }
             else
             {
+                PlayAnimation(characterTag, "RightLeft", true); // Verso sinistra con flip
                 PlayAnimation(characterTag, "RightLeft", true); // Verso sinistra con flip
             }
         }
         else
         {
             // Movimenti su o giù
+            // Movimenti su o giù
             if (direction.y > 0)
             {
+                PlayAnimation(characterTag, "North", false); // Verso l'alto
                 PlayAnimation(characterTag, "North", false); // Verso l'alto
             }
             else
             {
+                PlayAnimation(characterTag, "Straight", false); // Verso il basso
+            }
+        }
+    }
+
+    private void PlayAnimation(string characterTag, string direction, bool flipX)
+    {
+        // Usa il tag per determinare l'animazione
+        if (characterTag == "BossEnemy")
+        {
+            animator.Play("KingWalking" + direction);
+        }
+        else if (characterTag == "SpeedEnemy")
+        {
+            animator.Play("WitchWalking" + direction);
+        }
+        else if (characterTag == "Enemy")
+        {
+            animator.Play("SnakeCrawling" + direction); 
+        }
+        else if (characterTag == "Healer")
+        {
+            animator.Play("HealerWalking" + direction);
+        }
+         else if (characterTag == "TankEnemy")
+        {
+            animator.Play("ScorpionWalking" + direction);
+        }
+        
+        spriteRenderer.flipX = flipX;
                 PlayAnimation(characterTag, "Straight", false); // Verso il basso
             }
         }
