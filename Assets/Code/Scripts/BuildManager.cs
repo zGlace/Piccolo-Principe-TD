@@ -73,6 +73,13 @@ public class BuildManager : MonoBehaviour
             Destroy(towerPreview);
         }
 
+        // Notify the TutorialManager that a turret has been bought
+        TutorialManager tutorialManager = FindObjectOfType<TutorialManager>();
+        if (tutorialManager != null)
+        {
+            tutorialManager.OnTurretBought();
+        }
+
         // Spawn new tower preview to follow cursor
         if (selectedTower >= 0)
         {

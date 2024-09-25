@@ -87,6 +87,13 @@ public class Plot : MonoBehaviour
             baseTurret.HideRange();
         }
 
+        // Notify the TutorialManager that a turret has been placed
+        TutorialManager tutorialManager = FindObjectOfType<TutorialManager>();
+        if (tutorialManager != null)
+        {
+            tutorialManager.OnTurretPlaced();  // Inform the tutorial
+        }
+
         // Clear tower selection after placing
         BuildManager.main.ClearSelectedTower();
     }
