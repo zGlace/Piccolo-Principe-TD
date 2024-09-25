@@ -3,19 +3,25 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.EventSystems; // Required for Pointer events
 
-public class LevelSelect : MonoBehaviour
+public class LevelSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
     [Header("Level State")]
     [SerializeField] private bool unlocked; // Level is unlocked if true
     [SerializeField] private bool completed;
 
     [Header("UI References")]
-    public Image lockedImage; // Image or game object for locked state
-    public Image unlockedImage;
-    public Image completedImage;
+    public Image lockedImage; // Image for locked state
+    public Image unlockedImage; // Image for unlocked state
+    public Image completedImage; // Image for completed state
+    public Button button; // The button handling clicks
 
     [SerializeField] private int levelNumber; // The number of this level (e.g., Level 1, Level 2)
+
+    // Define the original and hover colors
+    private Color normalColor = Color.white;
+    private Color hoverColor = new Color(0.7f, 0.7f, 0.7f);
 
     private void Start()
     {
@@ -90,6 +96,41 @@ public class LevelSelect : MonoBehaviour
         {
             level.LoadLevelStatus(level.levelNumber); // Reload each level status
             level.UpdateLevelUI(); // Update the UI for each level
+        }
+    }
+
+    // Implement pointer enter and exit to change color on hover for unlocked and completed levels
+    public void OnPointerEnter(PointerEventData eventData)
+    {
+        // Only allow hover color change if the level is unlocked or completed
+        if (unlocked || completed)
+        {
+            SetHoverColor(true);
+        }
+    }
+
+    public void OnPointerExit(PointerEventData eventData)
+    {
+        // Only allow hover color change if the level is unlocked or completed
+        if (unlocked || completed)
+        {
+            SetHoverColor(false);
+        }
+    }
+
+    // Change the button color based on hover state
+    private void SetHoverColor(bool isHovering)
+    {
+        Color targetColor = isHovering ? hoverColor : normalColor;
+
+        // Change the color only for the active image (unlocked or completed)
+        if (unlockedImage.gameObject.activeSelf)
+        {
+            unlockedImage.color = targetColor;
+        }
+        else if (completedImage.gameObject.activeSelf)
+        {
+            completedImage.color = targetColor;
         }
     }
 }

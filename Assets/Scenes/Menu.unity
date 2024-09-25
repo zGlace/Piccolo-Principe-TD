@@ -1005,7 +1005,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &347889352
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1829,6 +1829,7 @@ MonoBehaviour:
   lockedImage: {fileID: 2129449181}
   unlockedImage: {fileID: 1747559989}
   completedImage: {fileID: 93896223}
+  button: {fileID: 650610703}
   levelNumber: 4
 --- !u!114 &650610703
 MonoBehaviour:
@@ -2433,7 +2434,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &955820823
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2745,6 +2746,7 @@ MonoBehaviour:
   lockedImage: {fileID: 1509889493}
   unlockedImage: {fileID: 608038375}
   completedImage: {fileID: 100839487}
+  button: {fileID: 995348984}
   levelNumber: 1
 --- !u!1 &1037821557
 GameObject:
@@ -2899,6 +2901,7 @@ MonoBehaviour:
   lockedImage: {fileID: 559764833}
   unlockedImage: {fileID: 2057537778}
   completedImage: {fileID: 1882665045}
+  button: {fileID: 1037821559}
   levelNumber: 3
 --- !u!1 &1175347770
 GameObject:
@@ -3053,6 +3056,7 @@ MonoBehaviour:
   lockedImage: {fileID: 2057087115}
   unlockedImage: {fileID: 327207651}
   completedImage: {fileID: 962123574}
+  button: {fileID: 1175347772}
   levelNumber: 2
 --- !u!1 &1386461178
 GameObject:
@@ -3619,14 +3623,14 @@ RectTransform:
   m_GameObject: {fileID: 1897596319}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.5, y: 1.5, z: 1.5}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1.2}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 670294010}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 125, y: -125}
+  m_AnchoredPosition: {x: 100, y: -100}
   m_SizeDelta: {x: 112.5, y: 112.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1897596321
@@ -3651,8 +3655,8 @@ MonoBehaviour:
   m_Transition: 1
   m_Colors:
     m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
-    m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 0.5294118}
-    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.60784316}
+    m_HighlightedColor: {r: 0.78867924, g: 0.78867924, b: 0.78867924, a: 1}
+    m_PressedColor: {r: 0.5773585, g: 0.5773585, b: 0.5773585, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
