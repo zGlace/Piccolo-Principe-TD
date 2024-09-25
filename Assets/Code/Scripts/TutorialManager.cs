@@ -85,7 +85,6 @@ public class TutorialManager : MonoBehaviour
             case 5: // End tutorial
                 if (Input.GetKeyDown(KeyCode.Space))
                 {
-                    Debug.Log("Space pressed, loading Menu scene"); // Debug statement
                     EndTutorial();
                 }
                 break;

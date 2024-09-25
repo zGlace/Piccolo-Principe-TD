@@ -90,6 +90,7 @@ public class TurretSlow : BaseTurret
         targetingRange = CalculateRange();
         UpdateUpgradeCostUI();
         ShowRange();
+        CloseUpgradeUI();
 
         aps = CalculateAPS();
         freezeTime = CalculateFreeze();

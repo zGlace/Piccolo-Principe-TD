@@ -59,8 +59,8 @@ public class EnemyHealth : MonoBehaviour
             isDestroyed = true;
 
             // Notify the tutorial manager about enemy destruction
-            TutorialManager.main.OnEnemyDestroyed();
-
+            if (TutorialManager.main != null) TutorialManager.main.OnEnemyDestroyed();
+            
             Destroy(gameObject);
         }
     }
