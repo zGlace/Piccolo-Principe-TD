@@ -29971,6 +29971,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5651045304972933375, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7064109826090931087, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
       propertyPath: healthBar
       value: 
@@ -29985,7 +29989,7 @@ PrefabInstance:
       objectReference: {fileID: 851074894}
     - target: {fileID: 8315081862928520190, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11
+      value: 10.75
       objectReference: {fileID: 0}
     - target: {fileID: 8315081862928520190, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
       propertyPath: m_LocalPosition.y

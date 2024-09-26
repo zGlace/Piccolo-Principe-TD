@@ -28132,10 +28132,10 @@ PrefabInstance:
     - target: {fileID: 3751502238660787237, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: -1762221400, guid: ebc6f0eae9277324cbe04c615e9cdabf, type: 3}
+      objectReference: {fileID: 21300000, guid: c61a31714fe1b26408f6b28f1bbe7c25, type: 3}
     - target: {fileID: 5651045304972933375, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.37
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7064109826090931087, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
       propertyPath: healthBar

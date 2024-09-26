@@ -209,9 +209,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1725453457
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 1
-  m_Sprite: {fileID: -70379690, guid: 84683461df4450a4ea3fd4bb1153d581, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c61a31714fe1b26408f6b28f1bbe7c25, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -476,8 +476,8 @@ ParticleSystem:
     startSize:
       serializedVersion: 2
       minMaxState: 3
-      scalar: 0.2
-      minScalar: 0.1
+      scalar: 0.15
+      minScalar: 0.08
       maxCurve:
         serializedVersion: 2
         m_Curve:
@@ -859,9 +859,9 @@ ParticleSystem:
     boxThickness: {x: 0, y: 0, z: 0}
     radiusThickness: 1
     donutRadius: 0.2
-    m_Position: {x: 0, y: 0, z: 0}
+    m_Position: {x: 0, y: 0.2, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 1, y: 1, z: 1}
+    m_Scale: {x: 0.45, y: 0.45, z: 1}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -4985,7 +4985,7 @@ ParticleSystemRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -1725453457
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 2
   m_RenderMode: 0
   m_MeshDistribution: 0
