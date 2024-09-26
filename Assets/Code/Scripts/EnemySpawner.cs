@@ -89,7 +89,7 @@ public class EnemySpawner : MonoBehaviour
             victory.victoryUI.SetActive(true);
             winTextAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
             winTextAnimator.Play(victoryAnimation, 0, 0.0f);
-            // victory.GameWon();
+            victory.GameWon();
             
             PlayerPrefs.SetInt("Level" + SceneManager.GetActiveScene().buildIndex + "_Completed", 1);
             PlayerPrefs.Save();

@@ -5,6 +5,9 @@ using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
+    public AudioSource audioSource;
+
+
     [Header("UI References")]
     public GameObject pauseMenuUI; // The entire pause menu
     public GameObject pauseSelectionUI; // The default screen with the resume/option buttons
@@ -27,6 +30,7 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
+        audioSource.Play();
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
@@ -35,7 +39,7 @@ public class PauseMenu : MonoBehaviour
     public void Pause()
     {
         ResetToPauseSelection(); // Make sure the main pause screen is shown first
-
+        audioSource.Pause();
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;

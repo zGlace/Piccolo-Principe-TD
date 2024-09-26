@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class LoseMenu : MonoBehaviour
 {
+
+    public AudioClip spawnSound;  // L'effetto sonoro dell'impatto
+    public AudioSource audioSource;
+
     [Header("References")]
     [SerializeField] public GameObject gameOverUI;
 
@@ -46,5 +50,8 @@ public class LoseMenu : MonoBehaviour
         loseTextAnimator.Play(loseAnimation, 0, 0.0f);
         Time.timeScale = 0f;
         Debug.Log("Game Over!");
+        audioSource.loop = false;
+        audioSource.Stop();
+        audioSource.PlayOneShot(spawnSound);
     }
 }

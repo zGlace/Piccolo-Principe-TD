@@ -13,7 +13,7 @@ public class VictoryMenu : MonoBehaviour
     [SerializeField] public GameObject victoryUI;
 
     public static bool GameFinished = false;
-    
+
     public void NewLevel()
     {
         GameFinished = false;
@@ -45,6 +45,7 @@ public class VictoryMenu : MonoBehaviour
         PauseMenu.GameIsPaused = true;
         StopAllCoroutines();
         Debug.Log("Congratulations! You've completed the level.");
+        audioSource.loop = false;
         audioSource.Stop();
         audioSource.PlayOneShot(spawnSound);
     }
