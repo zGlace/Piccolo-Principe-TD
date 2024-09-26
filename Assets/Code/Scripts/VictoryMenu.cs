@@ -45,8 +45,11 @@ public class VictoryMenu : MonoBehaviour
         PauseMenu.GameIsPaused = true;
         StopAllCoroutines();
         Debug.Log("Congratulations! You've completed the level.");
-        audioSource.loop = false;
-        audioSource.Stop();
-        audioSource.PlayOneShot(spawnSound);
+        if (audioSource != null)
+        {
+            audioSource.loop = false;
+            audioSource.Stop();
+            audioSource.PlayOneShot(spawnSound);
+        }
     }
 }

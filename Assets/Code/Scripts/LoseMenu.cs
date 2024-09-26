@@ -50,8 +50,11 @@ public class LoseMenu : MonoBehaviour
         loseTextAnimator.Play(loseAnimation, 0, 0.0f);
         Time.timeScale = 0f;
         Debug.Log("Game Over!");
-        audioSource.loop = false;
-        audioSource.Stop();
-        audioSource.PlayOneShot(spawnSound);
+        if(audioSource != null)
+        {
+            audioSource.loop = false;
+            audioSource.Stop();
+            audioSource.PlayOneShot(spawnSound);
+        }
     }
 }

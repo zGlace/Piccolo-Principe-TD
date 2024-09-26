@@ -30,7 +30,10 @@ public class PauseMenu : MonoBehaviour
 
     public void Resume()
     {
-        audioSource.Play();
+        if (audioSource != null)
+        {
+            audioSource.Play();
+        }
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1f;
         GameIsPaused = false;
@@ -39,7 +42,10 @@ public class PauseMenu : MonoBehaviour
     public void Pause()
     {
         ResetToPauseSelection(); // Make sure the main pause screen is shown first
-        audioSource.Pause();
+        if (audioSource != null)
+        {
+            audioSource.Pause();
+        }
         pauseMenuUI.SetActive(true);
         Time.timeScale = 0f;
         GameIsPaused = true;
