@@ -1480,7 +1480,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: All right! The first enemy is arriving. Be careful!
+  m_text: All right! A wave of enemies is coming, be careful!
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a751b0be9e370004ea35354b6da968e9, type: 2}
   m_sharedMaterial: {fileID: -7567983186579907017, guid: a751b0be9e370004ea35354b6da968e9, type: 2}
@@ -13985,9 +13985,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Ok, now you can drag the turret and place it in one of the deployable
-    plots. Don''t forget that if you select a wrong turret by accident, you can cancel
-    the deployment by clicking "Right Mouse".
+  m_text: 'Ok, now you can drag and place the turret in one of the deployable plots.
+    If you select a wrong turret by accident, you can just cancel the deployment
+    by clicking "Right Mouse Button".
 
 '
   m_isRightToLeft: 0
@@ -15151,10 +15151,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "Quick! Purchase a turret from the shop. Hover your cursor on the turret
-    you want and click with your \"Left Mouse\". Each turret has its own unique property
-    that differs from the others. You currently have 200 coins, so go ahead and select
-    the basic turret.\r"
+  m_text: "Quick, purchase a turret from the shop! Hover your cursor on the turret
+    you want and click your \"Left Mouse Button\". Remember: each turret has its
+    own unique property that differs from the others. You currently have 200 coins,
+    so go ahead and select the basic turret.\r"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a751b0be9e370004ea35354b6da968e9, type: 2}
   m_sharedMaterial: {fileID: -7567983186579907017, guid: a751b0be9e370004ea35354b6da968e9, type: 2}
@@ -16626,7 +16626,8 @@ MonoBehaviour:
   - {fileID: 397780042}
   - {fileID: 966368936}
   spawner: {fileID: 615874431568051653, guid: 63be50d9cab9d2b428a69f9d4d59e22a, type: 3}
-  waitTime: 5
+  waitTime: 2.5
+  totalEnemiesToDestroy: 3
 --- !u!114 &1056260386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16640,7 +16641,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tutorialEnemy: {fileID: 615874431568051653, guid: 63be50d9cab9d2b428a69f9d4d59e22a, type: 3}
-  spawnDelay: 3
+  spawnDelay: 1.5
+  totalEnemies: 3
 --- !u!1001 &1075825624
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -18115,8 +18117,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: I'll briefly guide you with all you have to do to stop the incoming wave
-    of enemies!
+  m_text: I will teach you how to deal with them before they manage to get close
+    to us.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: a751b0be9e370004ea35354b6da968e9, type: 2}
   m_sharedMaterial: {fileID: -7567983186579907017, guid: a751b0be9e370004ea35354b6da968e9, type: 2}

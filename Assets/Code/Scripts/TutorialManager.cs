@@ -16,6 +16,8 @@ public class TutorialManager : MonoBehaviour
     private bool turretPlaced = false; // Flag to check if the player has placed a turret
     private bool isReadyToSpawnEnemy = false; // Flag to indicate when to spawn the enemy
     private bool tutorialActive = true; // Flag to indicate if the tutorial is active
+    private int enemiesDestroyed = 0; // Track how many enemies have been destroyed
+    public int totalEnemiesToDestroy = 3; // Total enemies to destroy for the tutorial step 
 
     void Awake()
     {
@@ -71,9 +73,9 @@ public class TutorialManager : MonoBehaviour
                 break;
 
             case 4: // Final instruction before spawning enemies
-                isReadyToSpawnEnemy = true; // Set the flag to indicate readiness
                 if (waitTime <= 0)
                 {
+                    isReadyToSpawnEnemy = true; // Set the flag to indicate readiness
                     spawner.SetActive(true); // Activate the spawner if needed
                 }
                 else
@@ -115,8 +117,13 @@ public class TutorialManager : MonoBehaviour
 
     public void OnEnemyDestroyed()
     {
-        // Move to the next tutorial step
-        popUpIndex++;
+        enemiesDestroyed++;
+
+        if (enemiesDestroyed >= totalEnemiesToDestroy)
+        {
+            // Move to the next tutorial step
+            popUpIndex++;
+        }
     }
 
     public bool IsTutorialActive()
