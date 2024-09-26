@@ -1789,7 +1789,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 328
+    m_Bits: 264
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -16377,7 +16377,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 191
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -21392,7 +21392,7 @@ MonoBehaviour:
   - {fileID: 1047088691}
   - {fileID: 2076684554}
   - {fileID: 1714552971}
-  startingCurrency: 1600
+  startingCurrency: 1400
   currency: 0
 --- !u!4 &1056260381
 Transform:
@@ -32295,6 +32295,14 @@ PrefabInstance:
     - target: {fileID: 668966217125840597, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751502238660787237, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1762221400, guid: ebc6f0eae9277324cbe04c615e9cdabf, type: 3}
+    - target: {fileID: 4981174277282654979, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
+      propertyPath: InitialModule.startLifetime.scalar
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 7064109826090931087, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
       propertyPath: healthBar

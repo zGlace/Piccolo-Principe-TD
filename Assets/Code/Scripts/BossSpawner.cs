@@ -52,7 +52,7 @@ public class BossSpawner : MonoBehaviour
         SpawnBoss();
         volumeController.SetGlobalVolume(globalVolume);
         volumeController.ModifyVignette(Color.magenta, 0.3f, 1.0f, float.PositiveInfinity, 1.0f);
-        volumeController.ModifyBloom(25.0f, 1.0f, float.PositiveInfinity, 1.0f);
+        volumeController.ModifyBloom(18.0f, 1.0f, float.PositiveInfinity, 1.0f);
         volumeController.ModifyChromaticAberration(0.1f, 1.0f, float.PositiveInfinity, 1.0f);
     }
 

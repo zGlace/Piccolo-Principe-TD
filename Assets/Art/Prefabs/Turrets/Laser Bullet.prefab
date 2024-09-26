@@ -169,7 +169,7 @@ MonoBehaviour:
     m_Bits: 64
   rb: {fileID: 6517373453348115806}
   bulletSpeed: 12
-  bulletDamage: 2
+  bulletDamage: 5
 --- !u!82 &1628762342940549235
 AudioSource:
   m_ObjectHideFlags: 0

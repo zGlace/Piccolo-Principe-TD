@@ -16213,7 +16213,7 @@ Transform:
   m_GameObject: {fileID: 1242762505}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.5, y: 2, z: 0}
+  m_LocalPosition: {x: 11.75, y: 2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -28128,6 +28128,14 @@ PrefabInstance:
     - target: {fileID: 668966217125840597, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
       propertyPath: m_Name
       value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3751502238660787237, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -1762221400, guid: ebc6f0eae9277324cbe04c615e9cdabf, type: 3}
+    - target: {fileID: 5651045304972933375, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.37
       objectReference: {fileID: 0}
     - target: {fileID: 7064109826090931087, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
       propertyPath: healthBar
