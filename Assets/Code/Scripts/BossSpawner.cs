@@ -131,6 +131,7 @@ public class BossSpawner : MonoBehaviour
     {
         LevelManager.onEnemyDestroy.RemoveListener(OnEnemyDestroyed);
         LevelManager.onBossDefeated.RemoveListener(victory.GameWon);
+
     }
 
     public void BossReachedEnd()
@@ -144,7 +145,7 @@ public class BossSpawner : MonoBehaviour
         if (bossInstance != null)
         {
             Destroy(bossInstance);
-            victory.GameWon();
+            // victory.GameWon();
         }
     }
 

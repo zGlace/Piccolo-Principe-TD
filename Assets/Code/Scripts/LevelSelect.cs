@@ -25,6 +25,7 @@ public class LevelSelect : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     private void Start()
     {
+        PauseMenu.GameIsPaused = false;
         // Load level progress from PlayerPrefs
         LoadLevelStatus(levelNumber);
     }

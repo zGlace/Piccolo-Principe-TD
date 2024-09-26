@@ -14,8 +14,10 @@ public class VictoryMenu : MonoBehaviour
     {
         GameFinished = false;
         PauseMenu.GameIsPaused = false;
+        Debug.Log("PIPPO");
         Time.timeScale = 1f;
-        
+
+        Debug.Log("New Level" + PauseMenu.GameIsPaused);
         if (IsLastLevel())
         {
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 4);
