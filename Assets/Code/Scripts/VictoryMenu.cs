@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class VictoryMenu : MonoBehaviour
 {
+
+    public AudioClip spawnSound;  // L'effetto sonoro dell'impatto
+    public AudioSource audioSource;
+
     [Header("References")]
     [SerializeField] public GameObject victoryUI;
 
@@ -41,5 +45,7 @@ public class VictoryMenu : MonoBehaviour
         PauseMenu.GameIsPaused = true;
         StopAllCoroutines();
         Debug.Log("Congratulations! You've completed the level.");
+        audioSource.Stop();
+        audioSource.PlayOneShot(spawnSound);
     }
 }

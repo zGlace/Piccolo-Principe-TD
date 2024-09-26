@@ -7,6 +7,9 @@ using UnityEngine.Rendering;
 
 public abstract class BaseTurret : MonoBehaviour
 {
+    public AudioClip spawnSound;  // L'effetto sonoro dell'impatto
+    private AudioSource audioSource;
+
     [Header("Common References")]
     [SerializeField] protected LayerMask enemyMask;
     [SerializeField] public GameObject upgradeUI;
@@ -29,7 +32,8 @@ public abstract class BaseTurret : MonoBehaviour
         targetingRangeBase = targetingRange;
         upgradeButton.onClick.AddListener(Upgrade);
         UpdateUpgradeCostUI();
-
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(spawnSound);
     }
 
     public virtual void OpenUpgradeUI()

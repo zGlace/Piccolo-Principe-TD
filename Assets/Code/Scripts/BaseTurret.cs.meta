@@ -3,7 +3,13 @@ guid: d9605a88cc8874d46bd42857c744f4ab
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - spawnSound: {fileID: 8300000, guid: 4b85c2e986c9f0a45ad2df63450dfb66, type: 3}
+  - upgradeUI: {instanceID: 0}
+  - upgradeButton: {instanceID: 0}
+  - upgradeCostUI: {instanceID: 0}
+  - rangeIndicator: {instanceID: 0}
+  - rangeRenderer: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
