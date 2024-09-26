@@ -9,9 +9,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: 4482ab420550d504cad9e63b6fcc5283
   - enabled: 1
-    path: Assets/Scenes/Tutorial.unity
-    guid: 868203c5781986e408ff64f878a8d063
-  - enabled: 1
     path: Assets/Scenes/Meadow Level/Meadow Level.unity
     guid: a21afb9d226fcc64690ce6c30f525936
   - enabled: 1
@@ -23,4 +20,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Space Level/Space Level.unity
     guid: f58966e36349ec449a63f3f29b4f0328
+  - enabled: 1
+    path: Assets/Scenes/Tutorial.unity
+    guid: 868203c5781986e408ff64f878a8d063
   m_configObjects: {}
