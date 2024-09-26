@@ -86,6 +86,7 @@ public class EnemySpawner : MonoBehaviour
         if (currentWave >= maxWave) // Stop spawning and trigger the end of the level
         {
             victory.victoryUI.SetActive(true);
+            winTextAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
             winTextAnimator.Play(victoryAnimation, 0, 0.0f);
             victory.GameWon();
             

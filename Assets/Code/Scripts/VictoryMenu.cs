@@ -12,13 +12,13 @@ public class VictoryMenu : MonoBehaviour
     
     public void NewLevel()
     {
-        Time.timeScale = 1f;
         GameFinished = false;
         PauseMenu.GameIsPaused = false;
+        Time.timeScale = 1f;
         
         if (IsLastLevel())
         {
-            SceneManager.LoadScene("Menu");
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 4);
         }
         else
         {
@@ -26,12 +26,11 @@ public class VictoryMenu : MonoBehaviour
         }
     }
 
-    // Determine if the current level is the last one in the build index
+    // Determine if the current level is the last playable one
     private bool IsLastLevel()
     {
-        Time.timeScale = 1f;
         int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        return currentSceneIndex == SceneManager.sceneCountInBuildSettings - 1;
+        return currentSceneIndex == SceneManager.sceneCountInBuildSettings - 2; // Tutorial is the last scene, so the last level is second-to-last
     }
 
     public void GameWon()

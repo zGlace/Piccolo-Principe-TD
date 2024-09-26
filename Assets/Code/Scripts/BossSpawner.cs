@@ -56,7 +56,7 @@ public class BossSpawner : MonoBehaviour
             victory.victoryUI.SetActive(true);
             winTextAnimator.updateMode = AnimatorUpdateMode.UnscaledTime;
             winTextAnimator.Play(victoryAnimation, 0, 0.0f);
-            Time.timeScale = 0f;
+            DestroyAllEnemies();
             victory.GameWon();
 
             PlayerPrefs.SetInt("Level" + SceneManager.GetActiveScene().buildIndex + "_Completed", 1);
@@ -147,15 +147,21 @@ public class BossSpawner : MonoBehaviour
             victory.GameWon();
         }
     }
-    /*
-    private void GameWon()
+
+    public void DestroyAllEnemies()
     {
-        if (levelEnded) return;  // Prevent multiple calls
-        levelEnded = true; // Set the flag so it won't be called again
-        
-        Debug.Log("Level Complete! The boss is defeated.");
-        StopAllCoroutines(); // Stop spawning mini-waves
-        isSpawningEnemies = false;  // Stop spawning enemies
+        // Trova tutti gli oggetti attivi nella scena
+        GameObject[] allObjects = FindObjectsOfType<GameObject>();
+
+        // Scorri tutti gli oggetti e controlla se sono nel layer "Enemy"
+        foreach (GameObject obj in allObjects)
+        {
+            if (obj.layer == LayerMask.NameToLayer("Enemy"))
+            {
+                Destroy(obj);  // Distruggi l'oggetto
+            }
+        }
+
+        Debug.Log("Tutti gli elementi nel layer Enemy sono stati distrutti.");
     }
-    */
 }
