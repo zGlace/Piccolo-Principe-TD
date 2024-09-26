@@ -11159,7 +11159,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 264
+    m_Bits: 0
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -11645,7 +11645,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 255
+    m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
@@ -15062,7 +15062,7 @@ MonoBehaviour:
   - {fileID: 1000905830}
   - {fileID: 1887505344}
   - {fileID: 1714552971}
-  startingCurrency: 200
+  startingCurrency: 700
   currency: 0
 --- !u!4 &1056260381
 Transform:
@@ -15262,8 +15262,8 @@ MonoBehaviour:
     - {fileID: 615874431568051653, guid: daebcb143e1c90443b15fda250aff99c, type: 3}
     - {fileID: 615874431568051653, guid: daebcb143e1c90443b15fda250aff99c, type: 3}
   enemiesPerSecond: 0.5
-  timeBetweenWaves: 5
-  difficultyScalingFactor: 0.5
+  timeBetweenWaves: 2.5
+  difficultyScalingFactor: 1.2
   enemiesPerSecondCap: 15
   maxWave: 10
 --- !u!114 &1056260383

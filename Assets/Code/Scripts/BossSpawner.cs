@@ -2,10 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
+using static System.TimeZoneInfo;
 
 public class BossSpawner : MonoBehaviour
 {
+
+    [SerializeField] private VolumeController volumeController;
+    [SerializeField] private Volume globalVolume;
+
     [Header("Animation References")]
     [SerializeField] private Animator winTextAnimator;
     [SerializeField] private string victoryAnimation;
@@ -37,12 +43,17 @@ public class BossSpawner : MonoBehaviour
         LevelManager.onEnemyDestroy.AddListener(OnEnemyDestroyed);
         LevelManager.onBossDefeated.AddListener(victory.GameWon);
         StartCoroutine(StartBoss());
+
     }
     
     private IEnumerator StartBoss()
     {
         yield return new WaitForSeconds(5f); // Wait 5 seconds at the start of the game before commencing the waves
         SpawnBoss();
+        volumeController.SetGlobalVolume(globalVolume);
+        volumeController.ModifyVignette(Color.magenta, 0.3f, 1.0f, float.PositiveInfinity, 1.0f);
+        volumeController.ModifyBloom(25.0f, 1.0f, float.PositiveInfinity, 1.0f);
+        volumeController.ModifyChromaticAberration(0.1f, 1.0f, float.PositiveInfinity, 1.0f);
     }
 
     private void Update()

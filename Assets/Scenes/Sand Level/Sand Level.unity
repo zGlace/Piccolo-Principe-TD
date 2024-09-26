@@ -20840,7 +20840,7 @@ MonoBehaviour:
   - {fileID: 1251773196}
   - {fileID: 460488480}
   - {fileID: 1714552971}
-  startingCurrency: 200
+  startingCurrency: 400
   currency: 0
 --- !u!4 &1056260381
 Transform:
@@ -20963,8 +20963,8 @@ MonoBehaviour:
     - {fileID: 615874431568051653, guid: daebcb143e1c90443b15fda250aff99c, type: 3}
     - {fileID: 615874431568051653, guid: daebcb143e1c90443b15fda250aff99c, type: 3}
   enemiesPerSecond: 0.5
-  timeBetweenWaves: 5
-  difficultyScalingFactor: 0.5
+  timeBetweenWaves: 3.5
+  difficultyScalingFactor: 1.5
   enemiesPerSecondCap: 15
   maxWave: 7
 --- !u!114 &1056260383

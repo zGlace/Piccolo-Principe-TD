@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 
 public class EnemySpawner : MonoBehaviour
 {
+
     [System.Serializable]
     public class Wave
     {

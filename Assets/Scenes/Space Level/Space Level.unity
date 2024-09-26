@@ -5501,6 +5501,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4757146652944792194, guid: cb9abc40f65c6d047b1cc36172383e79, type: 3}
   m_PrefabInstance: {fileID: 377108927}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &386551215 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2595775437716936000, guid: b9f6f0756b298a24da18fcd83ac7d7a0, type: 3}
+  m_PrefabInstance: {fileID: 7097498031880710830}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca9eecf84ba7e0f43b56709f8bd43469, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &387491713
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -21381,7 +21392,7 @@ MonoBehaviour:
   - {fileID: 1047088691}
   - {fileID: 2076684554}
   - {fileID: 1714552971}
-  startingCurrency: 600
+  startingCurrency: 1600
   currency: 0
 --- !u!4 &1056260381
 Transform:
@@ -21453,6 +21464,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab6ebadc6478a8248972ed76133d867b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  volumeController: {fileID: 386551215}
+  globalVolume: {fileID: 1098083271}
   winTextAnimator: {fileID: 283202750}
   victoryAnimation: Victory
   bossPrefab: {fileID: 615874431568051653, guid: 72e30b6f8ef53cc4c9d184a93309b209, type: 3}

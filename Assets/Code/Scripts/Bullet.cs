@@ -5,6 +5,13 @@ using UnityEngine.Rendering;
 
 public class Bullet : MonoBehaviour
 {
+
+    public AudioClip hitSound;  // L'effetto sonoro dell'impatto
+    public AudioClip spawnSound;  // L'effetto sonoro dell'impatto
+    private AudioSource audioSource;
+    public LayerMask enemyLayer;
+
+
     [Header("References")]
     [SerializeField] private Rigidbody2D rb; 
     
@@ -13,6 +20,14 @@ public class Bullet : MonoBehaviour
     [SerializeField] private float bulletDamage = 1;
 
     private Transform target;
+
+
+
+    public void Start()
+    {
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(spawnSound);
+    }
 
     public void SetTarget(Transform _target)
     {
@@ -33,11 +48,22 @@ public class Bullet : MonoBehaviour
         transform.rotation = Quaternion.Euler(0, 0, angle); 
     }
 
-    private void OnCollisionEnter2D(Collision2D other)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        
-        other.gameObject.GetComponent<EnemyHealth>().EnemyTakeDamage(bulletDamage);
-        Destroy(gameObject);
+
+        collision.gameObject.GetComponent<EnemyHealth>().EnemyTakeDamage(bulletDamage);
+        audioSource.PlayOneShot(hitSound);
+
+        GetComponent<Collider2D>().enabled = false;
+        GetComponent<SpriteRenderer>().sprite = null;
+
+        if (collision.gameObject.layer == enemyLayer)
+        {
+
+            // Logica per danni e distruzione del nemico
+            Destroy(collision.gameObject);  // Distruggi il nemico
+        }
+        Destroy(gameObject, hitSound.length);
     }
 
     private void OnBecameInvisible()
